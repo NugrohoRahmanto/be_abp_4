@@ -3,13 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\Auth\GetUserInfoService;
-use App\Services\Auth\RegisterService;
-use App\Services\Auth\LoginService;
-use App\Services\Auth\LogoutService;
-use Exception;
 
-class AuthController extends Controller
+class UserController extends Controller
 {
     public function __construct(
         private GetUserInfoService $getUserInfoService,
@@ -18,7 +13,7 @@ class AuthController extends Controller
         private LogoutService $logoutService
     ) {}
 
-    public function getUserInfo(Request $request) {
+    public function getAllUser(Request $request) {
         try {
             return response()->json([
                 'status' => 'success',
@@ -33,13 +28,13 @@ class AuthController extends Controller
         }
     }
 
-    public function register(Request $request) {
+    public function addUser(Request $request) {
         try {
             $resultData = $this->registerService->register($request);
             return response()->json([
                 'status' => 'success',
                 'message' => 'User registered successfully',
-                'data' => $resultData
+                'data' => '$resultData'
             ])->setStatusCode(201);
         } catch (Exception $error) {
             return response()->json([
@@ -49,7 +44,7 @@ class AuthController extends Controller
         }
     }
 
-    public function login(Request $request) {
+    public function editUser(Request $request) {
         try {
             $resultData = $this->loginService->login($request);
             return response()->json([
@@ -65,7 +60,7 @@ class AuthController extends Controller
         }
     }
 
-    public function logout(Request $request) {
+    public function deleteUser(Request $request) {
         try {
             $resultData = $this->logoutService->logout($request);
 
