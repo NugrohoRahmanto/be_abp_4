@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\GetUserInfoService;
-use App\Services\RegisterService;
-use App\Services\LoginService;
-use App\Services\LogoutService;
+use App\Services\Auth\GetUserInfoService;
+use App\Services\Auth\RegisterService;
+use App\Services\Auth\LoginService;
+use App\Services\Auth\LogoutService;
 use Exception;
 
 class AuthController extends Controller
 {
     public function __construct(
         private GetUserInfoService $getUserInfoService,
-        private RegisterService $registerService,
+        // private RegisterService $registerService,
         private LoginService $loginService,
         private LogoutService $logoutService
     ) {}
@@ -35,11 +35,11 @@ class AuthController extends Controller
 
     public function register(Request $request) {
         try {
-            $resultData = $this->registerService->register($request);
+            // $resultData = $this->registerService->register($request);
             return response()->json([
                 'status' => 'success',
                 'message' => 'User registered successfully',
-                'data' => $resultData
+                'data' => '$resultData'
             ])->setStatusCode(201);
         } catch (Exception $error) {
             return response()->json([
@@ -67,8 +67,7 @@ class AuthController extends Controller
 
     public function logout(Request $request) {
         try {
-            $resultData = $this->logoutService->login($request);
-            // $request->user()->currentAccessToken()->delete();
+            $resultData = $this->logoutService->logout($request);
 
             return response()->json([
                 'status' => 'success',

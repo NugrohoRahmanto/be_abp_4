@@ -25,6 +25,20 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login');
 });
 
+Route::post('/token-test', function() {
+    try {
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Token is valid'
+        ]);
+    } catch (Exception $error) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $error->getMessage()
+        ]);
+    }
+})->middleware('auth:sanctum');
+
 Route::any('{any}', function () {
     return response()->json([
         'status' => 'error',
