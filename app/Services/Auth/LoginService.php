@@ -42,7 +42,7 @@ class LoginService {
 
             if ($existingToken) {
                 $tokenCreatedAt = $existingToken->created_at;
-                $tokenExpirationTime = Carbon::parse($tokenCreatedAt)->addMinutes(30);
+                $tokenExpirationTime = Carbon::parse($tokenCreatedAt)->addMinutes(60);
 
                 if ($tokenExpirationTime > now()){
                     return [
@@ -65,8 +65,6 @@ class LoginService {
             $resultData = $this->validateRepository->login($request);
 
             return [
-                'status' => 'success',
-                'message' => 'User logged in successfully',
                 'data' => $resultData
             ];
 
