@@ -2,23 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
+use App\Services\User\GetAllUserService;
+use App\Services\User\AddUserService;
+use App\Services\User\EditUserService;
+use App\Services\User\DeleteUserService;
 
 class UserController extends Controller
 {
     public function __construct(
-        private GetUserInfoService $getUserInfoService,
-        private RegisterService $registerService,
-        private LoginService $loginService,
-        private LogoutService $logoutService
+        private GetAllUserService $getAllUserService,
+        private AddUserService $addUserService,
+        private EditUserService $editUserService,
+        private DeleteUserService $deleteUserService
     ) {}
 
     public function getAllUser(Request $request) {
         try {
+            $resultData = $this->getAllUserService->getAllUser($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'User info retrieved successfully',
-                'data' => $this->getUserInfoService->getUserInfo($request)
+                'message' => 'All user data retrieved successfully',
+                'data' => $resultData
             ])->setStatusCode(200);
         } catch (Exception $error) {
             return response()->json([
@@ -30,26 +38,26 @@ class UserController extends Controller
 
     public function addUser(Request $request) {
         try {
-            $resultData = $this->registerService->register($request);
+            $resultData = $this->addUserService->addUser($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'User registered successfully',
-                'data' => '$resultData'
+                'message' => 'User data added successfully',
+                'data' => $resultData
             ])->setStatusCode(201);
         } catch (Exception $error) {
             return response()->json([
                 'status' => 'error',
                 'message' => $error->getMessage(),
-            ])->setStatusCode(400);
+            ])->setStatusCode(401);
         }
     }
 
     public function editUser(Request $request) {
         try {
-            $resultData = $this->loginService->login($request);
+            $resultData = $this->editUserService->editUser($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'User logged in successfully',
+                'message' => 'User data edited successfully',
                 'data' => $resultData
             ])->setStatusCode(200);
         } catch (Exception $error) {
@@ -62,11 +70,11 @@ class UserController extends Controller
 
     public function deleteUser(Request $request) {
         try {
-            $resultData = $this->logoutService->logout($request);
+            $resultData = $this->deleteUserService->deleteUser($request);
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'User logged out successfully',
+                'message' => 'User data deleted successfully',
             ])->setStatusCode(200);
         } catch (Exception $error) {
             return response()->json([
