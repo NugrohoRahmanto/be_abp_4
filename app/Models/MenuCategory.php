@@ -12,4 +12,5 @@ class MenuCategory extends Model
     protected $filllable = [
         'namaMenuKategori'
     ];
+
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\DTO;
-class StoreDTO {
+class ShopDTO {
     public function __construct(
         public ?int $id,
         public ?string $namaToko = null,

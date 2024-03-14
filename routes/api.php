@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KategoriMenuController;
 use App\Http\Controllers\MenuCategoryController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/kategori/menu/add', [MenuCategoryController::class, 'addKategoriM'])->name('addKategoriM');
     Route::put('/kategori/menu/edit', [MenuCategoryController::class, 'editKategoriM'])->name('editKategoriM');
     Route::delete('/kategori/menu/delete', [MenuCategoryController::class, 'deleteKategoriM'])->name('deleteKategoriM');
+
+    Route::get('/shop/all', [ShopController::class, 'getAllShop'])->name('getAllShop');
+    Route::post('/shop/add', [ShopController::class, 'addShop'])->name('addShop');
+    Route::put('/shop/edit', [ShopController::class, 'editShop'])->name('editShop');
+    Route::delete('/shop/delete', [ShopController::class, 'deleteShop'])->name('deleteShop');
 });
 
 Route::post('/token/test', function() {
