@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Exception;
 
-use App\Services\User\GetAllUserService;
-use App\Services\User\AddUserService;
-use App\Services\User\EditUserService;
-use App\Services\User\DeleteUserService;
+use App\Services\MenuCategory\GetAllMenuCategoryService;
+use App\Services\MenuCategory\AddMenuCategoryService;
+use App\Services\MenuCategory\EditMenuCategoryService;
+use App\Services\MenuCategory\DeleteMenuCategoryService;
 
-class UserController extends Controller
+class MenuCategoryController extends Controller
 {
     public function __construct(
-        private GetAllUserService $getAllUserService,
-        private AddUserService $addUserService,
-        private EditUserService $editUserService,
-        private DeleteUserService $deleteUserService
+        private GetAllMenuCategoryService $getAllMenuCategoryService,
+        private AddMenuCategoryService $addMenuCategoryService,
+        private EditMenuCategoryService $editMenuCategoryService,
+        private DeleteMenuCategoryService $deleteMenuCategoryService
     ) {}
 
-    public function getAllUser(Request $request) {
+    public function getAllKategoriM(Request $request) {
         try {
-            $resultData = $this->getAllUserService->getAllUser($request);
+            $resultData = $this->getAllMenuCategoryService->getAllMenuCategory($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'All user data retrieved successfully',
+                'message' => 'All menu category data retrieved successfully',
                 'data' => $resultData
             ])->setStatusCode(200);
         } catch (Exception $error) {
@@ -36,12 +36,12 @@ class UserController extends Controller
         }
     }
 
-    public function addUser(Request $request) {
+    public function addKategoriM(Request $request) {
         try {
-            $resultData = $this->addUserService->addUser($request);
+            $resultData = $this->addMenuCategoryService->addMenuCategory($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'User data added successfully',
+                'message' => 'Menu category data added successfully',
                 'data' => $resultData
             ])->setStatusCode(201);
         } catch (Exception $error) {
@@ -52,12 +52,12 @@ class UserController extends Controller
         }
     }
 
-    public function editUser(Request $request) {
+    public function editKategoriM(Request $request) {
         try {
-            $resultData = $this->editUserService->editUser($request);
+            $resultData = $this->editMenuCategoryService->editMenuCategory($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'User data edited successfully',
+                'message' => 'Menu category data edited successfully',
                 'data' => $resultData
             ])->setStatusCode(200);
         } catch (Exception $error) {
@@ -68,12 +68,12 @@ class UserController extends Controller
         }
     }
 
-    public function deleteUser(Request $request) {
+    public function deleteKategoriM(Request $request) {
         try {
-            $resultData = $this->deleteUserService->deleteUser($request);
+            $resultData = $this->deleteMenuCategoryService->deleteMenuCategory($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'User data deleted successfully',
+                'message' => 'Menu category data deleted successfully',
             ])->setStatusCode(200);
         } catch (Exception $error) {
             return response()->json([
@@ -82,4 +82,5 @@ class UserController extends Controller
             ])->setStatusCode(401);
         }
     }
+
 }

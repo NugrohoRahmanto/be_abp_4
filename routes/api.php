@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KategoriMenuController;
+use App\Http\Controllers\MenuCategoryController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +28,19 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login');
 });
 
-Route::post('/token-test', function() {
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/user/all', [UserController::class, 'getAllUser'])->name('getAllUser');
+    Route::post('/user/add', [UserController::class, 'addUser'])->name('addUser');
+    Route::put('/user/edit', [UserController::class, 'editUser'])->name('editUser');
+    Route::delete('/user/delete', [UserController::class, 'deleteUser'])->name('deleteUser');
+    
+    Route::get('/kategori/menu/all', [MenuCategoryController::class, 'getAllKategoriM'])->name('getAllKategoriM');
+    Route::post('/kategori/menu/add', [MenuCategoryController::class, 'addKategoriM'])->name('addKategoriM');
+    Route::put('/kategori/menu/edit', [MenuCategoryController::class, 'editKategoriM'])->name('editKategoriM');
+    Route::delete('/kategori/menu/delete', [MenuCategoryController::class, 'deleteKategoriM'])->name('deleteKategoriM');
+});
+
+Route::post('/token/test', function() {
     try {
         return response()->json([
             'status' => 'success',
