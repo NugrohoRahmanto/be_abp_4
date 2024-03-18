@@ -7,6 +7,7 @@ use App\Services\Auth\GetUserInfoService;
 use App\Services\Auth\RegisterService;
 use App\Services\Auth\LoginService;
 use App\Services\Auth\LogoutService;
+use Illuminate\Support\Facades\Auth;
 use Exception;
 
 class AuthController extends Controller
@@ -67,8 +68,8 @@ class AuthController extends Controller
 
     public function logout(Request $request) {
         try {
-            $resultData = $this->logoutService->logout($request);
-
+            $request->user()->currentAccessToken()->delete();
+            // Auth::guard("web")->logout();
             return response()->json([
                 'status' => 'success',
                 'message' => 'User logged out successfully',

@@ -10,9 +10,8 @@ use Exception;
 class LogoutService {
     public function logout(Request $request) {
         try {
-            Auth::guard('web')->logout();
-
-            $request->user()->tokens()->delete();
+            $request->user()->currentAccessToken()->delete();
+            Auth::guard("web")->logout();
 
             return 'Successfully logged out';
 

@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DiscountController;
-use App\Http\Controllers\KategoriMenuController;
 use App\Http\Controllers\MenuCategoryController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
