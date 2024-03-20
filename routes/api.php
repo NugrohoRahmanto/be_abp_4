@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChooseController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\MenuCategoryController;
 use App\Http\Controllers\MenuController;
@@ -56,6 +57,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/menu/add', [MenuController::class, 'addMenu'])->name('addMenu');
     Route::put('/menu/edit', [MenuController::class, 'editMenu'])->name('editMenu');
     Route::delete('/menu/delete', [MenuController::class, 'deleteMenu'])->name('deleteMenu');
+
+    Route::get('/menu/category/byShop', [ChooseController::class, 'getAllMenuCategoryByMenuId'])->name('getAllMenuCategoryByMenuId');
+    Route::post('/menu/category/add', [ChooseController::class, 'addMenuCategoryByMenuId'])->name('addMenuCategoryByMenuId');
+    Route::put('/menu/category/edit', [ChooseController::class, 'editMenuCategoryByMenuId'])->name('editMenuCategoryByMenuId');
+    Route::delete('/menu/category/delete', [ChooseController::class, 'deleteMenuCategoryByMenuId'])->name('deleteMenuCategoryByMenuId');
 });
 
 Route::post('/token/test', function() {
