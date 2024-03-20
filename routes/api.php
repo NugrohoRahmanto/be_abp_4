@@ -51,7 +51,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/discount/edit', [DiscountController::class, 'editDiscount'])->name('editDiscount');
     Route::delete('/discount/delete', [DiscountController::class, 'deleteDiscount'])->name('deleteDiscount');
 
-    Route::get('/menu/{{shop_id}}', [MenuController::class, 'getMenuById'])->name('getMenuById');
+    Route::get('/menu/byshop', [MenuController::class, 'getMenuById'])->name('getMenuById');
     Route::get('/menu/all', [MenuController::class, 'getAllMenu'])->name('getAllMenu');
     Route::post('/menu/add', [MenuController::class, 'addMenu'])->name('addMenu');
     Route::put('/menu/edit', [MenuController::class, 'editMenu'])->name('editMenu');

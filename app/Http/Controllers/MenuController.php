@@ -17,9 +17,9 @@ class MenuController extends Controller
     public function __construct(
         private GetMenuByIdService $getMenuByIdService,
         private GetAllMenuWithShopNameService $getAllMenuService,
-        // private AddMenuService $addMenuService,
-        // private EditMenuService $editMenuService,
-        // private DeleteMenuService $deleteMenuService
+        private AddMenuService $addMenuService,
+        private EditMenuService $editMenuService,
+        private DeleteMenuService $deleteMenuService
     ) {}
 
     public function getMenuById(Request $request) {
@@ -57,11 +57,11 @@ class MenuController extends Controller
 
     public function addMenu(Request $request) {
         try {
-            // $resultData = $this->addMenuService->addMenu($request);
+            $resultData = $this->addMenuService->addMenu($request);
             return response()->json([
                 'status' => 'success',
                 'message' => 'Menu data added successfully',
-                // 'data' => $resultData
+                'data' => $resultData
             ])->setStatusCode(201);
         } catch (Exception $error) {
             return response()->json([
@@ -73,11 +73,11 @@ class MenuController extends Controller
 
     public function editMenu(Request $request) {
         try {
-            // $resultData = $this->editMenuService->editMenu($request);
+            $resultData = $this->editMenuService->editMenu($request);
             return response()->json([
                 'status' => 'success',
                 'message' => 'Menu data edited successfully',
-                // 'data' => $resultData
+                'data' => $resultData
             ])->setStatusCode(200);
         } catch (Exception $error) {
             return response()->json([
@@ -89,11 +89,11 @@ class MenuController extends Controller
 
     public function deleteMenu(Request $request) {
         try {
-            // $resultData = $this->deleteMenuService->deleteMenu($request);
+            $resultData = $this->deleteMenuService->deleteMenu($request);
             return response()->json([
                 'status' => 'success',
                 'message' => 'Menu data deleted successfully',
-                // 'data' => $resultData
+                'data' => $resultData
             ])->setStatusCode(200);
         } catch (Exception $error) {
             return response()->json([

@@ -18,7 +18,13 @@ class GetMenuByIdService {
      */
     public function getMenuById(Request $request) {
         try {
-            return $this->menuByIdRepository->getMenuById($request);
+            $request->validate([
+                'shop_id' => 'required|exists:shops,id',
+            ]);
+
+            $shop_id = $request->shop_id;
+
+            return $this->menuByIdRepository->getMenuById($shop_id);
 
         } catch (Exception $error) {
             throw new Exception($error->getMessage());

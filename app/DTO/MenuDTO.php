@@ -8,7 +8,6 @@ class MenuDTO {
         public ?int $hargaMenu = null,
         public ?string $deskripsiMenu = null,
         public ?int $shop_id = null,
-        public ?int $category_id = null
     )
     {}
 
@@ -50,14 +49,6 @@ class MenuDTO {
 
     public function setShopId(int $shop_id): void {
         $this->shop_id = $shop_id;
-    }
-
-    public function getCategoryId(): ?int {
-        return $this->category_id;
-    }
-
-    public function setCategoryId(int $category_id): void {
-        $this->category_id = $category_id;
     }
 }
 
