@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\MenuCategoryController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -49,6 +50,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/discount/add', [DiscountController::class, 'addDiscount'])->name('addDiscount');
     Route::put('/discount/edit', [DiscountController::class, 'editDiscount'])->name('editDiscount');
     Route::delete('/discount/delete', [DiscountController::class, 'deleteDiscount'])->name('deleteDiscount');
+
+    Route::get('/menu/{{shop_id}}', [MenuController::class, 'getMenuById'])->name('getMenuById');
+    Route::get('/menu/all', [MenuController::class, 'getAllMenu'])->name('getAllMenu');
+    Route::post('/menu/add', [MenuController::class, 'addMenu'])->name('addMenu');
+    Route::put('/menu/edit', [MenuController::class, 'editMenu'])->name('editMenu');
+    Route::delete('/menu/delete', [MenuController::class, 'deleteMenu'])->name('deleteMenu');
 });
 
 Route::post('/token/test', function() {

@@ -24,4 +24,9 @@ class Shop extends Model
     public function discount(){
         return $this->hasMany(Discount::class, 'shop_id', 'id');
     }
+
+    public function menus()
+    {
+        return $this->hasMany(Menu::class);
+    }
 }

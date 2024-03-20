@@ -13,4 +13,9 @@ class MenuCategory extends Model
         'namaMenuKategori'
     ];
 
+    public function menus()
+    {
+        return $this->belongsToMany(Menu::class, 'pilih_category', 'idCategory', 'idMenu');
+    }
+
 }
