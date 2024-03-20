@@ -5,7 +5,6 @@ namespace App\Repositories\Menu;
 use Exception;
 
 use App\Models\Menu;
-use App\DTO\MenuDTO;
 
 class GetAllMenuWithShopNameRepository
 {
