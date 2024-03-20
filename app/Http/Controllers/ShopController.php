@@ -2,29 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Services\Auth\GetUserInfoService;
-use App\Services\Auth\RegisterService;
-use App\Services\Auth\LoginService;
-use App\Services\Auth\LogoutService;
-use Illuminate\Support\Facades\Auth;
 use Exception;
 
-class AuthController extends Controller
+use App\Services\Shop\GetAllShopWithUserService;
+use App\Services\Shop\AddShopService;
+use App\Services\Shop\EditShopService;
+use App\Services\Shop\DeleteShopService;
+
+class ShopController extends Controller
 {
     public function __construct(
-        private GetUserInfoService $getUserInfoService,
-        private RegisterService $registerService,
-        private LoginService $loginService,
-        private LogoutService $logoutService
+        private GetAllShopWithUserService $getAllShopWithUserService,
+        private AddShopService $addShopService,
+        private EditShopService $editShopService,
+        private DeleteShopService $deleteShopService
     ) {}
 
-    public function getUserInfo(Request $request) {
+    public function getAllShop(Request $request) {
         try {
+            $resultData = $this->getAllShopWithUserService->getAllShopWithUser($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'User info retrieved successfully',
-                'data' => $this->getUserInfoService->getUserInfo($request)
+                'message' => 'All shop data retrieved successfully',
+                'data' => $resultData
             ])->setStatusCode(200);
         } catch (Exception $error) {
             return response()->json([
@@ -34,28 +36,28 @@ class AuthController extends Controller
         }
     }
 
-    public function register(Request $request) {
+    public function addShop(Request $request) {
         try {
-            $resultData = $this->registerService->register($request);
+            $resultData = $this->addShopService->addShop($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'User registered successfully',
+                'message' => 'Shop data added successfully',
                 'data' => $resultData
             ])->setStatusCode(201);
         } catch (Exception $error) {
             return response()->json([
                 'status' => 'error',
                 'message' => $error->getMessage(),
-            ])->setStatusCode(400);
+            ])->setStatusCode(401);
         }
     }
 
-    public function login(Request $request) {
+    public function editShop(Request $request) {
         try {
-            $resultData = $this->loginService->login($request);
+            $resultData = $this->editShopService->editShop($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'User logged in successfully',
+                'message' => 'Shop data edited successfully',
                 'data' => $resultData
             ])->setStatusCode(200);
         } catch (Exception $error) {
@@ -66,13 +68,12 @@ class AuthController extends Controller
         }
     }
 
-    public function logout(Request $request) {
+    public function deleteShop(Request $request) {
         try {
-            $request->user()->currentAccessToken()->delete();
-            // Auth::guard("web")->logout();
+            $resultData = $this->deleteShopService->deleteShop($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'User logged out successfully',
+                'message' => 'Shop data deleted successfully',
             ])->setStatusCode(200);
         } catch (Exception $error) {
             return response()->json([

@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\KategoriMenuController;
+use App\Http\Controllers\ChooseController;
+use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\MenuCategoryController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +41,27 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/kategori/menu/add', [MenuCategoryController::class, 'addKategoriM'])->name('addKategoriM');
     Route::put('/kategori/menu/edit', [MenuCategoryController::class, 'editKategoriM'])->name('editKategoriM');
     Route::delete('/kategori/menu/delete', [MenuCategoryController::class, 'deleteKategoriM'])->name('deleteKategoriM');
+
+    Route::get('/shop/all', [ShopController::class, 'getAllShop'])->name('getAllShop');
+    Route::post('/shop/add', [ShopController::class, 'addShop'])->name('addShop');
+    Route::put('/shop/edit', [ShopController::class, 'editShop'])->name('editShop');
+    Route::delete('/shop/delete', [ShopController::class, 'deleteShop'])->name('deleteShop');
+
+    Route::get('/discount/all', [DiscountController::class, 'getAllDiscount'])->name('getAllDiscount');
+    Route::post('/discount/add', [DiscountController::class, 'addDiscount'])->name('addDiscount');
+    Route::put('/discount/edit', [DiscountController::class, 'editDiscount'])->name('editDiscount');
+    Route::delete('/discount/delete', [DiscountController::class, 'deleteDiscount'])->name('deleteDiscount');
+
+    Route::get('/menu/byshop', [MenuController::class, 'getMenuById'])->name('getMenuById');
+    Route::get('/menu/all', [MenuController::class, 'getAllMenu'])->name('getAllMenu');
+    Route::post('/menu/add', [MenuController::class, 'addMenu'])->name('addMenu');
+    Route::put('/menu/edit', [MenuController::class, 'editMenu'])->name('editMenu');
+    Route::delete('/menu/delete', [MenuController::class, 'deleteMenu'])->name('deleteMenu');
+
+    Route::get('/menu/category/byShop', [ChooseController::class, 'getAllMenuCategoryByMenuId'])->name('getAllMenuCategoryByMenuId');
+    Route::post('/menu/category/add', [ChooseController::class, 'addMenuCategoryByMenuId'])->name('addMenuCategoryByMenuId');
+    Route::put('/menu/category/edit', [ChooseController::class, 'editMenuCategoryByMenuId'])->name('editMenuCategoryByMenuId');
+    Route::delete('/menu/category/delete', [ChooseController::class, 'deleteMenuCategoryByMenuId'])->name('deleteMenuCategoryByMenuId');
 });
 
 Route::post('/token/test', function() {

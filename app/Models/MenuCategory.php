@@ -12,4 +12,10 @@ class MenuCategory extends Model
     protected $filllable = [
         'namaMenuKategori'
     ];
+
+    public function menus()
+    {
+        return $this->belongsToMany(Menu::class, 'pilih_category', 'idCategory', 'idMenu');
+    }
+
 }
