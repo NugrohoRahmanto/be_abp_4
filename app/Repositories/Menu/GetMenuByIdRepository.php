@@ -25,7 +25,8 @@ class GetMenuByIdRepository
                     'id' => $menu->id,
                     'namaMenu' => $menu->namaMenu,
                     'hargaMenu' => $menu->hargaMenu,
-                    'deskripsiMenu' => $menu->deskripsiMenu
+                    'deskripsiMenu' => $menu->deskripsiMenu,
+                    'namaToko' => $menu->namaToko
                 ];
 
                 array_push($menuDTOs, $menuDTO);
