@@ -52,16 +52,15 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/discount/edit', [DiscountController::class, 'editDiscount'])->name('editDiscount');
     Route::delete('/discount/delete', [DiscountController::class, 'deleteDiscount'])->name('deleteDiscount');
 
-    Route::get('/menu/byshop', [MenuController::class, 'getMenuById'])->name('getMenuById');
+    Route::get('/menu/byShop', [MenuController::class, 'getMenuById'])->name('getMenuById');
     Route::get('/menu/all', [MenuController::class, 'getAllMenu'])->name('getAllMenu');
     Route::post('/menu/add', [MenuController::class, 'addMenu'])->name('addMenu');
     Route::put('/menu/edit', [MenuController::class, 'editMenu'])->name('editMenu');
     Route::delete('/menu/delete', [MenuController::class, 'deleteMenu'])->name('deleteMenu');
 
-    Route::get('/menu/category/byShop', [ChooseController::class, 'getAllMenuCategoryByMenuId'])->name('getAllMenuCategoryByMenuId');
-    Route::post('/menu/category/add', [ChooseController::class, 'addMenuCategoryByMenuId'])->name('addMenuCategoryByMenuId');
-    Route::put('/menu/category/edit', [ChooseController::class, 'editMenuCategoryByMenuId'])->name('editMenuCategoryByMenuId');
-    Route::delete('/menu/category/delete', [ChooseController::class, 'deleteMenuCategoryByMenuId'])->name('deleteMenuCategoryByMenuId');
+    Route::get('/menu/detail/category/{menuId}', [ChooseController::class, 'getAllMenuCategoryByMenuId'])->name('getAllMenuCategoryByMenuId');
+    Route::post('/menu/detail/category/add', [ChooseController::class, 'addMenuCategoryByMenuId'])->name('addMenuCategoryByMenuId');
+    Route::delete('/menu/detail/category/delete', [ChooseController::class, 'deleteMenuCategoryByMenuId'])->name('deleteMenuCategoryByMenuId');
 });
 
 Route::post('/token/test', function() {
