@@ -24,6 +24,7 @@ class GetAllMenuWithShopNameRepository
                     'namaMenu' => $menu->namaMenu,
                     'hargaMenu' => $menu->hargaMenu,
                     'deskripsiMenu' => $menu->deskripsiMenu,
+                    'stokMenu' => $menu->stokMenu,
                     'shop_id' => $menu->shop_id,
                     'shop_namaToko' => $menu->namaToko
                 ];

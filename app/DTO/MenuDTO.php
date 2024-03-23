@@ -6,6 +6,7 @@ class MenuDTO {
         public ?int $id,
         public ?string $namaMenu = null,
         public ?int $hargaMenu = null,
+        public ?int $stokMenu = null,
         public ?string $deskripsiMenu = null,
         public ?int $shop_id = null,
     )
@@ -33,6 +34,14 @@ class MenuDTO {
 
     public function setHargaMenu(int $hargaMenu): void {
         $this->hargaMenu = $hargaMenu;
+    }
+
+    public function getStokMenu(): ?int {
+        return $this->stokMenu;
+    }
+
+    public function setStokMenu(int $stokMenu): void {
+        $this->stokMenu = $stokMenu;
     }
 
     public function getDeskripsiMenu(): ?string {

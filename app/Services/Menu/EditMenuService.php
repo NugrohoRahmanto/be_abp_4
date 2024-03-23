@@ -26,6 +26,7 @@ class EditMenuService {
                 'id' => 'required|exists:menus,id',
                 'namaMenu' => 'required',
                 'hargaMenu' => 'required',
+                'stokMenu' => 'required',
                 'deskripsiMenu' => 'required',
             ]);
 
@@ -33,6 +34,7 @@ class EditMenuService {
                 id: $request->id,
                 namaMenu: $request->namaMenu,
                 hargaMenu: $request->hargaMenu,
+                stokMenu: $request->stokMenu,
                 deskripsiMenu: $request->deskripsiMenu,
             );
 

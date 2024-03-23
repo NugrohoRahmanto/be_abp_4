@@ -16,7 +16,7 @@ class PilihCategory extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'idCategory',
-        'idMenu'
+        'idMenu',
+        'idCategory'
     ];
 }

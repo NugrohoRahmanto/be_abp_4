@@ -9,7 +9,7 @@ class MenuCategory extends Model
 {
     use HasFactory;
 
-    protected $filllable = [
+    protected $fillable = [
         'namaMenuKategori'
     ];
 
@@ -17,5 +17,5 @@ class MenuCategory extends Model
     {
         return $this->belongsToMany(Menu::class, 'pilih_category', 'idCategory', 'idMenu');
     }
-
 }
+

@@ -18,6 +18,7 @@ class EditMenuRepository {
             $menu = Menu::find($menuDTO->id);
             $menu->namaMenu = $menuDTO->namaMenu;
             $menu->hargaMenu = $menuDTO->hargaMenu;
+            $menu->stokMenu += $menuDTO->stokMenu;
             $menu->deskripsiMenu = $menuDTO->deskripsiMenu;
             $menu->save();
 
