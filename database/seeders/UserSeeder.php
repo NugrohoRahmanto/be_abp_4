@@ -71,7 +71,7 @@ class UserSeeder extends Seeder
             'fullName' => 'Seller',
             'nickname' => 'Seller',
             'password' => Hash::make('12345678'),
-            'phoneNumber' => '081234555666',
+            'phoneNumber' => '081234552086',
             'address' => 'Jl. Sukabirus No 65',
             'role' => 'Seller'
         ]);
@@ -80,7 +80,7 @@ class UserSeeder extends Seeder
             'fullName' => 'Buyer',
             'nickname' => 'Buyer',
             'password' => Hash::make('12345678'),
-            'phoneNumber' => '081234555666',
+            'phoneNumber' => '081234559105',
             'address' => 'Jl. Sukabirus No 65',
             'role' => 'Buyer'
         ]);
