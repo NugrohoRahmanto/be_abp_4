@@ -9,7 +9,13 @@ class MenuCategory extends Model
 {
     use HasFactory;
 
-    protected $filllable = [
+    protected $fillable = [
         'namaMenuKategori'
     ];
+
+    public function menus()
+    {
+        return $this->belongsToMany(Menu::class, 'pilih_category', 'idCategory', 'idMenu');
+    }
 }
+
