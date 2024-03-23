@@ -26,6 +26,7 @@ class AddMenuService {
                 'namaMenu' => 'required|unique:menus,namaMenu',
                 'hargaMenu' => 'required',
                 'deskripsiMenu' => 'required',
+                'stokMenu' => 'required',
                 'shop_id' => 'required|exists:shops,id',
             ]);
 
@@ -34,6 +35,7 @@ class AddMenuService {
                 namaMenu: $request->namaMenu,
                 hargaMenu: $request->hargaMenu,
                 deskripsiMenu: $request->deskripsiMenu,
+                stokMenu: $request->stokMenu,
                 shop_id: $request->shop_id,
             );
 

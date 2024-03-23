@@ -5,7 +5,6 @@ namespace App\Repositories\Menu;
 use Exception;
 
 use App\Models\Menu;
-use App\DTO\MenuDTO;
 
 class GetMenuByIdRepository
 {
@@ -25,6 +24,7 @@ class GetMenuByIdRepository
                     'id' => $menu->id,
                     'namaMenu' => $menu->namaMenu,
                     'hargaMenu' => $menu->hargaMenu,
+                    'stokMenu' => $menu->stokMenu,
                     'deskripsiMenu' => $menu->deskripsiMenu,
                     'namaToko' => $menu->namaToko
                 ];

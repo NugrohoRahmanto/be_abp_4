@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('namaMenu');
             $table->integer('hargaMenu');
+            $table->integer('stokMenu');
             $table->string('deskripsiMenu')->nullable();
 
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade')->onUpdate('cascade');

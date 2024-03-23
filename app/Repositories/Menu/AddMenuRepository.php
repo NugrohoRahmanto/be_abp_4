@@ -18,6 +18,7 @@ class AddMenuRepository {
             $menu = new Menu();
             $menu->namaMenu = $menuDTO->namaMenu;
             $menu->hargaMenu = $menuDTO->hargaMenu;
+            $menu->stokMenu = $menuDTO->stokMenu;
             $menu->deskripsiMenu = $menuDTO->deskripsiMenu;
             $menu->shop_id = $menuDTO->shop_id;
             $menu->save();
