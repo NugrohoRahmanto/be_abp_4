@@ -68,12 +68,21 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'fullName' => 'Sales',
-            'nickname' => 'Sales',
+            'fullName' => 'Seller',
+            'nickname' => 'Seller',
             'password' => Hash::make('12345678'),
             'phoneNumber' => '081234555666',
             'address' => 'Jl. Sukabirus No 65',
-            'role' => 'Sales'
+            'role' => 'Seller'
+        ]);
+
+        User::create([
+            'fullName' => 'Buyer',
+            'nickname' => 'Buyer',
+            'password' => Hash::make('12345678'),
+            'phoneNumber' => '081234555666',
+            'address' => 'Jl. Sukabirus No 65',
+            'role' => 'Buyer'
         ]);
     }
 }
