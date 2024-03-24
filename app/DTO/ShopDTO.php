@@ -6,6 +6,7 @@ class ShopDTO {
         public ?int $id,
         public ?string $namaToko = null,
         public ?string $nomorToko = null,
+        public ?string $lokasiToko = null,
         public ?int $user_id = null
     )
     {}
@@ -32,6 +33,14 @@ class ShopDTO {
 
     public function setNomorToko(string $nomorToko): void {
         $this->nomorToko = $nomorToko;
+    }
+
+    public function getLokasiToko(): ?string {
+        return $this->lokasiToko;
+    }
+
+    public function setLokasiToko(string $lokasiToko): void {
+        $this->lokasiToko = $lokasiToko;
     }
 
     public function getUserId(): ?int {

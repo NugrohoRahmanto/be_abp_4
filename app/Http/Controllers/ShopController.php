@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Exception;
 
+use App\Services\Shop\GetShopByUserIdService;
 use App\Services\Shop\GetAllShopWithUserService;
 use App\Services\Shop\AddShopService;
 use App\Services\Shop\EditShopService;
@@ -14,11 +15,28 @@ use App\Services\Shop\DeleteShopService;
 class ShopController extends Controller
 {
     public function __construct(
+        private GetShopByUserIdService $getShopByUserIdService,
         private GetAllShopWithUserService $getAllShopWithUserService,
         private AddShopService $addShopService,
         private EditShopService $editShopService,
         private DeleteShopService $deleteShopService
     ) {}
+
+    public function getShopByUserId(Request $request) {
+        try {
+            $resultData = $this->getShopByUserIdService->getShopById($request);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Shop data by User Id retrieved successfully',
+                'data' => $resultData
+            ])->setStatusCode(200);
+        } catch (Exception $error) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $error->getMessage(),
+            ])->setStatusCode(401);
+        }
+    }
 
     public function getAllShop(Request $request) {
         try {
