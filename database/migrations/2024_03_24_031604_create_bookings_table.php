@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('nomorMeja');
             $table->string('telpPemesan');
             $table->time('jamAmbil')->nullable();
+            $table->integer('totalHarga')->default(0);
             $table->string('statusAmbil')->default('Take Away');
 
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade')->onUpdate('cascade');

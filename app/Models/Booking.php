@@ -14,6 +14,7 @@ class Booking extends Model
         'nomorMeja',
         'telpPemesan',
         'jamAmbil',
+        'totalHarga',
         'statusAmbil',
         'shop_id'
     ];

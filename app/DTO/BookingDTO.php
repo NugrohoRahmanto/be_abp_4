@@ -9,6 +9,7 @@ class BookingDTO{
         public ?int $nomorMeja = null,
         public ?int $telpPemesan = null,
         public ?string $jamAmbil = null,
+        public ?int $totalHarga = null,
         public ?string $statusAmbil = null,
         public ?int $shop_id = null,
     ){}
@@ -43,6 +44,11 @@ class BookingDTO{
         return $this->jamAmbil;
     }
 
+    public function getTotalHarga(): ?int
+    {
+        return $this->totalHarga;
+    }
+
     public function getStatusAmbil(): ?string
     {
         return $this->statusAmbil;
@@ -66,6 +72,11 @@ class BookingDTO{
     public function setTelpPemesan(?int $telpPemesan): void
     {
         $this->telpPemesan = $telpPemesan;
+    }
+
+    public function setTotalHarga(?int $totalHarga): void
+    {
+        $this->totalHarga = $totalHarga;
     }
 
     public function setJamAmbil(?string $jamAmbil): void
