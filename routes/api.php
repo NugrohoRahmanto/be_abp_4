@@ -45,7 +45,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/kategori/menu/delete', [MenuCategoryController::class, 'deleteKategoriM'])->name('deleteKategoriM');
 
     Route::get('/shop/byUser', [ShopController::class, 'getShopByUserId'])->name('getShopByUserId');
-    Route::get('/shop/all', [ShopController::class, 'getAllShop'])->name('getAllShop');
     Route::post('/shop/add', [ShopController::class, 'addShop'])->name('addShop');
     Route::put('/shop/edit', [ShopController::class, 'editShop'])->name('editShop');
     Route::delete('/shop/delete', [ShopController::class, 'deleteShop'])->name('deleteShop');
@@ -77,6 +76,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
 Route::group(['prefix' => 'menu'], function() {
     Route::get('/byShop', [MenuController::class, 'getMenuById'])->name('getMenuById');
     Route::get('/all', [MenuController::class, 'getAllMenu'])->name('getAllMenu');
+});
+
+Route::group(['prefix' => 'shop'], function() {
+    Route::get('/shop/all', [ShopController::class, 'getAllShop'])->name('getAllShop');
 });
 
 Route::post('/token/test', function() {
