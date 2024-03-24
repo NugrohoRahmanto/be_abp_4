@@ -55,8 +55,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/discount/edit', [DiscountController::class, 'editDiscount'])->name('editDiscount');
     Route::delete('/discount/delete', [DiscountController::class, 'deleteDiscount'])->name('deleteDiscount');
 
-    Route::get('/menu/byShop', [MenuController::class, 'getMenuById'])->name('getMenuById');
-    Route::get('/menu/all', [MenuController::class, 'getAllMenu'])->name('getAllMenu');
     Route::post('/menu/add', [MenuController::class, 'addMenu'])->name('addMenu');
     Route::put('/menu/edit', [MenuController::class, 'editMenu'])->name('editMenu');
     Route::delete('/menu/delete', [MenuController::class, 'deleteMenu'])->name('deleteMenu');
@@ -74,6 +72,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/booking/detail/menu/{bookingId}', [CheckoutController::class, 'getAllMenuByBookingId'])->name('etAllMenuByBookingId');
     Route::post('/booking/detail/menu/add', [CheckoutController::class, 'addMenuByBookingId'])->name('ddMenuByBookingId');
     Route::delete('/booking/detail/menu/delete', [CheckoutController::class, 'deleteMenuByBookingId'])->name('deleteMenuByBookingId');
+});
+
+Route::group(function() {
+    Route::get('/menu/byShop', [MenuController::class, 'getMenuById'])->name('getMenuById');
+    Route::get('/menu/all', [MenuController::class, 'getAllMenu'])->name('getAllMenu');
 });
 
 Route::post('/token/test', function() {
