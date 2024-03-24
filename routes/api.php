@@ -74,9 +74,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/booking/detail/menu/delete', [CheckoutController::class, 'deleteMenuByBookingId'])->name('deleteMenuByBookingId');
 });
 
-Route::group(function() {
-    Route::get('/menu/byShop', [MenuController::class, 'getMenuById'])->name('getMenuById');
-    Route::get('/menu/all', [MenuController::class, 'getAllMenu'])->name('getAllMenu');
+Route::group(['prefix' => 'menu'], function() {
+    Route::get('/byShop', [MenuController::class, 'getMenuById'])->name('getMenuById');
+    Route::get('/all', [MenuController::class, 'getAllMenu'])->name('getAllMenu');
 });
 
 Route::post('/token/test', function() {
