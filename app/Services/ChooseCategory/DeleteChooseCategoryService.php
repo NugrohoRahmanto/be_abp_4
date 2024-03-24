@@ -20,7 +20,7 @@ class DeleteChooseCategoryService
 
             $result = $this->chooseCategoryRepository->deleteChooseCategory($menuId, $categoryId);
         
-            return $result;;
+            return $result;
         } catch (Exception $error) {
             throw new Exception($error->getMessage());
         }

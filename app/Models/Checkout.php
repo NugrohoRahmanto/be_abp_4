@@ -12,15 +12,12 @@ class Checkout extends Model
     protected $table = 'checkouts';
     public $timestamps = false;
 
-    protected $filllable = [
-        'quantity'
-    ];
-
     protected $primaryKey = ['idBooking', 'idMenu'];
     public $incrementing = false;
 
     protected $fillable = [
         'idMenu',
-        'idBooking'
+        'idBooking',
+        'quantity',
     ];
 }

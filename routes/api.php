@@ -65,14 +65,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/menu/detail/category/add', [ChooseController::class, 'addMenuCategoryByMenuId'])->name('addMenuCategoryByMenuId');
     Route::delete('/menu/detail/category/delete', [ChooseController::class, 'deleteMenuCategoryByMenuId'])->name('deleteMenuCategoryByMenuId');
 
-    // still development
     Route::get('/booking/byShop', [BookingController::class, 'getBookingByShopId'])->name('getBookingByShopId');
     Route::get('/booking/all', [BookingController::class, 'getAllBooking'])->name('getAllBooking');
     Route::post('/booking/add', [BookingController::class, 'addBooking'])->name('addBooking');
     Route::put('/booking/edit', [BookingController::class, 'editBooking'])->name('editBooking');
     Route::delete('/booking/delete', [BookingController::class, 'deletebooking'])->name('deletebooking');
 
-    // still development
     Route::get('/booking/detail/menu/{bookingId}', [CheckoutController::class, 'getAllMenuByBookingId'])->name('etAllMenuByBookingId');
     Route::post('/booking/detail/menu/add', [CheckoutController::class, 'addMenuByBookingId'])->name('ddMenuByBookingId');
     Route::delete('/booking/detail/menu/delete', [CheckoutController::class, 'deleteMenuByBookingId'])->name('deleteMenuByBookingId');
