@@ -79,7 +79,7 @@ Route::group(['prefix' => 'menu'], function() {
 });
 
 Route::group(['prefix' => 'shop'], function() {
-    Route::get('/shop/all', [ShopController::class, 'getAllShop'])->name('getAllShop');
+    Route::get('/all', [ShopController::class, 'getAllShop'])->name('getAllShop');
 });
 
 Route::post('/token/test', function() {
