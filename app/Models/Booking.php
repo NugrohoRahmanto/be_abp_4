@@ -17,4 +17,9 @@ class Booking extends Model
         'statusAmbil',
         'shop_id'
     ];
+
+    public function menus()
+    {
+        return $this->belongsToMany(Menu::class, 'checkouts', 'idBooking', 'idMenu');
+    }
 }

@@ -27,4 +27,9 @@ class Menu extends Model
     {
         return $this->belongsToMany(MenuCategory::class, 'pilih_category', 'idMenu', 'idCategory');
     }
+
+    public function bookings()
+    {
+        return $this->belongsToMany(Booking::class, 'checkouts', 'idMenu', 'idBooking');
+    }
 }
