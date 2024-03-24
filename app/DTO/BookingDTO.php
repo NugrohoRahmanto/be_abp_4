@@ -4,7 +4,7 @@ namespace App\DTO;
 
 class BookingDTO{
     public function __construct(
-        public ?int $idMenu,
+        public ?int $id = null,
         public ?string $namaPemesan = null,
         public ?int $nomorMeja = null,
         public ?int $telpPemesan = null,
@@ -13,9 +13,14 @@ class BookingDTO{
         public ?int $shop_id = null,
     ){}
 
-    public function getIdMenu(): ?int
+    public function getId(): ?int
     {
-        return $this->idMenu;
+        return $this->id;
+    }
+
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
     }
 
     public function getNamaPemesan(): ?string
@@ -46,11 +51,6 @@ class BookingDTO{
     public function getShopId(): ?int
     {
         return $this->shop_id;
-    }
-
-    public function setIdMenu(?int $idMenu): void
-    {
-        $this->idMenu = $idMenu;
     }
 
     public function setNamaPemesan(?string $namaPemesan): void

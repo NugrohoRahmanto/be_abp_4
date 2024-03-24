@@ -15,11 +15,11 @@ class BookingSeeder extends Seeder
         for ($i = 1; $i <= 6; $i++) {
             Booking::create([
                 'namaPemesan' => 'Pemesan ' . $i,
-                'nomorMeja' => rand(1, 10),
+                'nomorMeja' => '' . rand(1, 10),
                 'telpPemesan' => '08123456789',
                 'jamAmbil' => '12:00:00',
                 'statusAmbil' => 'Take Away',
-                'shop_id' => rand(1, 3),
+                'shop_id' => rand(1, 3)
             ]);
         }
     }

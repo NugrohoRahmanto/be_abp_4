@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('namaPemesan');
             $table->integer('nomorMeja');
-            $table->integer('telpPemesan');
+            $table->string('telpPemesan');
             $table->time('jamAmbil')->nullable();
             $table->string('statusAmbil')->default('Take Away');
 
