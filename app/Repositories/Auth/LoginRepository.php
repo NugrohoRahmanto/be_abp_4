@@ -28,6 +28,10 @@ class LoginRepository {
                 throw new Exception('Token is missing or invalid.');
             }
 
+            $makeOnline = User::where('nickname', $userDTO->nickname)->update([
+                'status' => 'online'
+            ]);
+
             return new UserDTO(
                 $user->id,
                 $user->fullName,
@@ -36,6 +40,7 @@ class LoginRepository {
                 $user->phoneNumber,
                 $user->address,
                 $user->role,
+                $user->status,
                 $token
             );
 

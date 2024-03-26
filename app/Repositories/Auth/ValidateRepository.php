@@ -41,6 +41,7 @@ class ValidateRepository {
                     'fullName' => $validUserDTO->getFullName(),
                     'nickname' => $validUserDTO->getNickname(),
                     'role' => $validUserDTO->getRole(),
+                    'status' => $validUserDTO->getStatus(),
                     'token' => $validUserDTO->getToken(),
                 ];
             } else {

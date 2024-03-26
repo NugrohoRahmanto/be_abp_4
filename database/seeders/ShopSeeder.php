@@ -16,18 +16,21 @@ class ShopSeeder extends Seeder
         Shop::create([
             'namaToko' => 'Toko A',
             'nomorToko' => '01',
+            'lokasiToko' => 'Asrama Putra',
             'user_id' => 1
         ]);
 
         Shop::create([
             'namaToko' => 'Toko B',
             'nomorToko' => '02',
+            'lokasiToko' => 'Asrama Putri',
             'user_id' => 2
         ]);
 
         Shop::create([
             'namaToko' => 'Toko C',
             'nomorToko' => '03',
+            'lokasiToko' => 'Asrama Putra',
             'user_id' => 3
         ]);
         

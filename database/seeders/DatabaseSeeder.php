@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             ShopSeeder::class,
             DiscountSeeder::class,
             MenuSeeder::class,
+            BookingSeeder::class,
         ]);
     }
 }

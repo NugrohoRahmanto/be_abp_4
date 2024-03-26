@@ -25,7 +25,8 @@ class GetUserInfoService {
                 id: $user->id,
                 nickname: $user->nickname,
                 fullName: $user->fullName,
-                role: $user->role
+                role: $user->role,
+                status: $user->status
             );
         } catch (Exception $error) {
             throw new Exception($error->getMessage());

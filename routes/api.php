@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ChooseController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\MenuCategoryController;
@@ -42,7 +44,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/kategori/menu/edit', [MenuCategoryController::class, 'editKategoriM'])->name('editKategoriM');
     Route::delete('/kategori/menu/delete', [MenuCategoryController::class, 'deleteKategoriM'])->name('deleteKategoriM');
 
-    Route::get('/shop/all', [ShopController::class, 'getAllShop'])->name('getAllShop');
+    Route::get('/shop/byUser', [ShopController::class, 'getShopByUserId'])->name('getShopByUserId');
     Route::post('/shop/add', [ShopController::class, 'addShop'])->name('addShop');
     Route::put('/shop/edit', [ShopController::class, 'editShop'])->name('editShop');
     Route::delete('/shop/delete', [ShopController::class, 'deleteShop'])->name('deleteShop');
@@ -52,8 +54,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/discount/edit', [DiscountController::class, 'editDiscount'])->name('editDiscount');
     Route::delete('/discount/delete', [DiscountController::class, 'deleteDiscount'])->name('deleteDiscount');
 
-    Route::get('/menu/byShop', [MenuController::class, 'getMenuById'])->name('getMenuById');
-    Route::get('/menu/all', [MenuController::class, 'getAllMenu'])->name('getAllMenu');
     Route::post('/menu/add', [MenuController::class, 'addMenu'])->name('addMenu');
     Route::put('/menu/edit', [MenuController::class, 'editMenu'])->name('editMenu');
     Route::delete('/menu/delete', [MenuController::class, 'deleteMenu'])->name('deleteMenu');
@@ -61,6 +61,25 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/menu/detail/category/{menuId}', [ChooseController::class, 'getAllMenuCategoryByMenuId'])->name('getAllMenuCategoryByMenuId');
     Route::post('/menu/detail/category/add', [ChooseController::class, 'addMenuCategoryByMenuId'])->name('addMenuCategoryByMenuId');
     Route::delete('/menu/detail/category/delete', [ChooseController::class, 'deleteMenuCategoryByMenuId'])->name('deleteMenuCategoryByMenuId');
+
+    Route::get('/booking/byShop', [BookingController::class, 'getBookingByShopId'])->name('getBookingByShopId');
+    Route::get('/booking/all', [BookingController::class, 'getAllBooking'])->name('getAllBooking');
+    Route::post('/booking/add', [BookingController::class, 'addBooking'])->name('addBooking');
+    Route::put('/booking/edit', [BookingController::class, 'editBooking'])->name('editBooking');
+    Route::delete('/booking/delete', [BookingController::class, 'deletebooking'])->name('deletebooking');
+
+    Route::get('/booking/detail/menu/{bookingId}', [CheckoutController::class, 'getAllMenuByBookingId'])->name('etAllMenuByBookingId');
+    Route::post('/booking/detail/menu/add', [CheckoutController::class, 'addMenuByBookingId'])->name('ddMenuByBookingId');
+    Route::delete('/booking/detail/menu/delete', [CheckoutController::class, 'deleteMenuByBookingId'])->name('deleteMenuByBookingId');
+});
+
+Route::group(['prefix' => 'menu'], function() {
+    Route::get('/byShop', [MenuController::class, 'getMenuById'])->name('getMenuById');
+    Route::get('/all', [MenuController::class, 'getAllMenu'])->name('getAllMenu');
+});
+
+Route::group(['prefix' => 'shop'], function() {
+    Route::get('/all', [ShopController::class, 'getAllShop'])->name('getAllShop');
 });
 
 Route::post('/token/test', function() {

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('phoneNumber')->unique();
             $table->string('address');
             $table->string('role');
+            $table->string('status')->default('offline');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

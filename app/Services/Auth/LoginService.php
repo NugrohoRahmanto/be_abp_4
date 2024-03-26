@@ -55,6 +55,17 @@ class LoginService {
                     DB::table('personal_access_tokens')
                         ->where('id', $existingToken->id)
                         ->delete();
+
+                    $user = $request->user();
+
+                    if ($user !== null && isset($user['nickname'])) {
+                        $final = User::where('nickname', $user['nickname'])->update([
+                            'status' => 'offline'
+                        ]);
+                    } else {
+                        throw new \Exception("User information not found or invalid.");
+                    }
+                    
                     return [
                         'status' => 'failed',
                         'message' => 'Token expired',

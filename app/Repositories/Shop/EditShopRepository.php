@@ -18,6 +18,7 @@ class EditShopRepository {
             $shop = Shop::find($shopDTO->id);
             $shop->namaToko = $shopDTO->namaToko;
             $shop->nomorToko = $shopDTO->nomorToko;
+            $shop->lokasiToko = $shopDTO->lokasiToko;
             if($shopDTO->user_id != null) {
                 $shop->user_id = $shopDTO->user_id;
             }

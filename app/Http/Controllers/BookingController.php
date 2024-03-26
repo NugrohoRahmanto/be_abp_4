@@ -6,28 +6,28 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Exception;
 
-use App\Services\Shop\GetShopByUserIdService;
-use App\Services\Shop\GetAllShopWithUserService;
-use App\Services\Shop\AddShopService;
-use App\Services\Shop\EditShopService;
-use App\Services\Shop\DeleteShopService;
+use App\Services\Booking\GetBookingByShopIdService;
+use App\Services\Booking\GetAllBookingService;
+use App\Services\Booking\AddBookingService;
+use App\Services\Booking\EditBookingService;
+use App\Services\Booking\DeleteBookingService;
 
-class ShopController extends Controller
+class BookingController extends Controller
 {
     public function __construct(
-        private GetShopByUserIdService $getShopByUserIdService,
-        private GetAllShopWithUserService $getAllShopWithUserService,
-        private AddShopService $addShopService,
-        private EditShopService $editShopService,
-        private DeleteShopService $deleteShopService
+        private GetBookingByShopIdService $getBookingByShopIdService,
+        private GetAllBookingService $getAllBookingService,
+        private AddBookingService $addBookingService,
+        private EditBookingService $editBookingService,
+        private DeleteBookingService $deleteBookingService
     ) {}
 
-    public function getShopByUserId(Request $request) {
+    public function getBookingByShopId(Request $request) {
         try {
-            $resultData = $this->getShopByUserIdService->getShopById($request);
+            $resultData = $this->getBookingByShopIdService->getBookingById($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'Shop data by User Id retrieved successfully',
+                'message' => 'Booking data by shop Id retrieved successfully',
                 'data' => $resultData
             ])->setStatusCode(200);
         } catch (Exception $error) {
@@ -38,12 +38,12 @@ class ShopController extends Controller
         }
     }
 
-    public function getAllShop(Request $request) {
+    public function getAllBooking(Request $request) {
         try {
-            $resultData = $this->getAllShopWithUserService->getAllShopWithUser($request);
+            $resultData = $this->getAllBookingService->getAllBooking($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'All shop data retrieved successfully',
+                'message' => 'All booking data retrieved successfully',
                 'data' => $resultData
             ])->setStatusCode(200);
         } catch (Exception $error) {
@@ -54,12 +54,12 @@ class ShopController extends Controller
         }
     }
 
-    public function addShop(Request $request) {
+    public function addBooking(Request $request) {
         try {
-            $resultData = $this->addShopService->addShop($request);
+            $resultData = $this->addBookingService->addBooking($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'Shop data added successfully',
+                'message' => 'Booking data added successfully',
                 'data' => $resultData
             ])->setStatusCode(201);
         } catch (Exception $error) {
@@ -70,12 +70,12 @@ class ShopController extends Controller
         }
     }
 
-    public function editShop(Request $request) {
+    public function editBooking(Request $request) {
         try {
-            $resultData = $this->editShopService->editShop($request);
+            $resultData = $this->editBookingService->editBooking($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'Shop data edited successfully',
+                'message' => 'Booking data edited successfully',
                 'data' => $resultData
             ])->setStatusCode(200);
         } catch (Exception $error) {
@@ -86,12 +86,12 @@ class ShopController extends Controller
         }
     }
 
-    public function deleteShop(Request $request) {
+    public function deleteBooking(Request $request) {
         try {
-            $resultData = $this->deleteShopService->deleteShop($request);
+            $resultData = $this->deleteBookingService->deleteBooking($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'Shop data deleted successfully',
+                'message' => 'Booking data deleted successfully',
             ])->setStatusCode(200);
         } catch (Exception $error) {
             return response()->json([

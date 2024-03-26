@@ -6,13 +6,16 @@ use Exception;
 
 use App\Models\Shop;
 
-class GetAllShopWithUserRepository
+class GetShopByUserIdRepository
 {
-    public function getAllShopWithUserRepository()
+    public function getShopById($user_id)
     {
         try{
             $shops = Shop::join('users', 'shops.user_id', '=', 'users.id')
-                ->select('shops.*', 'users.fullName')->get();
+                        ->select('shops.*', 'users.fullName')
+                        ->where('users.id', $user_id)
+                        ->get();
+
 
             $shopDTOs = [];
 
@@ -22,7 +25,6 @@ class GetAllShopWithUserRepository
                     'namaToko' => $shop->namaToko,
                     'nomorToko' => $shop->nomorToko,
                     'lokasiToko' => $shop->lokasiToko,
-                    'user_id' => $shop->user_id,
                     'user_fullName' => $shop->fullName
                 ];
 
