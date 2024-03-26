@@ -9,6 +9,7 @@ use App\Services\Auth\LoginService;
 use App\Services\Auth\LogoutService;
 use Illuminate\Support\Facades\Auth;
 use Exception;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -68,8 +69,18 @@ class AuthController extends Controller
 
     public function logout(Request $request) {
         try {
+            $user = $request->user();
+
+            if ($user !== null && isset($user['nickname'])) {
+                $final = User::where('nickname', $user['nickname'])->update([
+                    'status' => 'offline'
+                ]);
+            } else {
+                throw new \Exception("User information not found or invalid.");
+            }
+            
             $request->user()->currentAccessToken()->delete();
-            // Auth::guard("web")->logout();
+            
             return response()->json([
                 'status' => 'success',
                 'message' => 'User logged out successfully',
