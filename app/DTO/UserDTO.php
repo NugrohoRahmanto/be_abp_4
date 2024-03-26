@@ -10,6 +10,7 @@ class userDTO{
         public ?string $phoneNumber = null,
         public ?string $address = null,
         public ?string $role = null,
+        public ?string $status = null,
         public ?string $token = null
     ){}
 
@@ -81,6 +82,16 @@ class userDTO{
     public function setRole(string $role): void
     {
         $this->role = $role;
+    }
+
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
     }
 
     public function getToken(): string
