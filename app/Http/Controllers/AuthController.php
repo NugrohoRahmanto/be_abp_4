@@ -69,17 +69,7 @@ class AuthController extends Controller
 
     public function logout(Request $request) {
         try {
-            $user = $request->user();
-
-            if ($user !== null && isset($user['nickname'])) {
-                $final = User::where('nickname', $user['nickname'])->update([
-                    'status' => 'offline'
-                ]);
-            } else {
-                throw new \Exception("User information not found or invalid.");
-            }
-            
-            $request->user()->currentAccessToken()->delete();
+            $resultData = $this->logoutService->logout($request);
             
             return response()->json([
                 'status' => 'success',

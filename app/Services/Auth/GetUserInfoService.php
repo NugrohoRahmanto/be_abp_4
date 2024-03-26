@@ -25,6 +25,8 @@ class GetUserInfoService {
                 id: $user->id,
                 nickname: $user->nickname,
                 fullName: $user->fullName,
+                phoneNumber: $user->phoneNumber,
+                address: $user->address,
                 role: $user->role,
                 status: $user->status
             );
