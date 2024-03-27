@@ -18,6 +18,10 @@ class GetMenuByIdRepository
                 ->get();
 
             $menuDTOs = [];
+            
+            if($menus->isEmpty()) {
+                throw new Exception("Menu not found");
+            }
 
             foreach ($menus as $menu) {
                 $menuDTO = [
