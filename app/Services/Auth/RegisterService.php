@@ -9,11 +9,12 @@ use App\DTO\UserDTO;
 use Exception;
 
 use App\Repositories\Auth\RegisterRepository;
-
+use App\Services\Booking\AddBookingService;
 
 class RegisterService {
     public function __construct(
-        private RegisterRepository $registerRepository
+        private RegisterRepository $registerRepository,
+        private AddBookingService $addBookingService,
     ) {}
 
     /**
@@ -45,6 +46,7 @@ class RegisterService {
             );
 
             $userResult = $this->registerRepository->register($userDTO);
+            $addBooking = $this->addBookingService->addBooking($request, $userResult);
 
             return ([
                 'fullName' => $userResult->getFullName(),

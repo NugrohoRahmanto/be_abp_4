@@ -12,15 +12,25 @@ class BookingSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 1; $i <= 6; $i++) {
-            Booking::create([
-                'namaPemesan' => 'Pemesan ' . $i,
-                'nomorMeja' => '' . rand(1, 10),
-                'telpPemesan' => '08123456789',
-                'jamAmbil' => '12:00:00',
-                'statusAmbil' => 'Take Away',
-                'shop_id' => rand(1, 3)
-            ]);
-        }
+        Booking::create([
+            'nomorMeja' => '' . rand(1, 10),
+            'jamAmbil' => '12:00:00',
+            'statusAmbil' => 'Take Away',
+            'user_id' => 2
+        ]);
+
+        Booking::create([
+            'nomorMeja' => '' . rand(1, 10),
+            'jamAmbil' => '13:00:00',
+            'statusAmbil' => 'Take Away',
+            'user_id' => 3
+        ]);
+
+        Booking::create([
+            'nomorMeja' => '' . rand(1, 10),
+            'jamAmbil' => '14:00:00',
+            'statusAmbil' => 'Take Away',
+            'user_id' => 4
+        ]);
     }
 }

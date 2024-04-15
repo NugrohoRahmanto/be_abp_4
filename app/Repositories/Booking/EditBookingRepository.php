@@ -16,7 +16,7 @@ class EditBookingRepository {
     public function editBooking(BookingDTO $bookingDTO) {
         try {
             $booking = Booking::find($bookingDTO->id);
-            $booking->telpPemesan = $bookingDTO->telpPemesan;
+            $booking->nomorMeja = $bookingDTO->nomorMeja;
             $booking->jamAmbil = $bookingDTO->jamAmbil;
             $booking->statusAmbil = $bookingDTO->statusAmbil;
             $booking->save();

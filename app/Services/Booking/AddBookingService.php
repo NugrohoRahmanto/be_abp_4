@@ -20,36 +20,27 @@ class AddBookingService {
      * @param Request $request
      * @return BookingDTO
      */
-    public function addBooking(Request $request) {
+    public function addBooking(Request $request, $user_id) {
         try {
             $request->validate([
-                'namaPemesan' => 'required',
-                'nomorMeja' => 'required',
-                'telpPemesan' => 'required',
-                'jamAmbil' => 'required',
-                'statusAmbil' => 'required',
-                'shop_id' => 'required|exists:shops,id',
+                'user_id' => 'required|exists:users,id',
             ]);
 
             $bookingDTO = new BookingDTO(
                 id : null,
-                namaPemesan: $request->namaPemesan,
-                nomorMeja: $request->nomorMeja,
-                telpPemesan: $request->telpPemesan,
-                jamAmbil: $request->jamAmbil,
-                statusAmbil: $request->statusAmbil,
-                shop_id: $request->shop_id,
+                nomorMeja: null,
+                jamAmbil: null,
+                statusAmbil: null,
+                user_id: $user_id,
             );
 
             $userResult = $this->addBookingRepository->addBooking($bookingDTO);
 
             return ([
-                'namaPemesan' => $userResult->getNamaPemesan(),
                 'nomorMeja' => $userResult->getNomorMeja(),
-                'telpPemesan' => $userResult->getTelpPemesan(),
                 'jamAmbil' => $userResult->getJamAmbil(),
                 'statusAmbil' => $userResult->getStatusAmbil(),
-                'shop_id' => $userResult->getShopId(),
+                'user_id' => $userResult->getUserId(),
             ]);
 
         } catch (Exception $error) {

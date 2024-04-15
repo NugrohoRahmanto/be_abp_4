@@ -24,14 +24,14 @@ class EditBookingService {
             // Validate request
             $request->validate([
                 'id' => 'required|exists:bookings,id',
-                'telpPemesan' => 'required',
+                'nomorMeja' => 'required',
                 'jamAmbil' => 'required',
                 'statusAmbil' => 'required',
             ]);
 
             $bookingDTO = new BookingDTO(
                 id: $request->id,
-                telpPemesan: $request->telpPemesan,
+                nomorMeja: $request->nomorMeja,
                 jamAmbil: $request->jamAmbil,
                 statusAmbil: $request->statusAmbil,
             );

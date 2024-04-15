@@ -6,14 +6,14 @@ use Exception;
 
 use App\Models\Booking;
 
-class GetBookingByShopIdRepository
+class GetBookingByUserIdRepository
 {
-    public function getBookingById($shop_id)
+    public function getBookingById($user_id)
     {
         try{
-            $bookings = Booking::join('shops', 'bookings.shop_id', '=', 'shops.id')
-                ->select('bookings.*', 'shops.namaToko', 'shops.nomorToko', 'shops.lokasiToko')
-                ->where('bookings.shop_id', $shop_id)
+            $bookings = Booking::join('users', 'bookings.user_id', '=', 'users.id')
+                ->select('bookings.*', 'users.fullName', 'users.nickname', 'users.phoneNumber')
+                ->where('bookings.user_id', $user_id)
                 ->get();
 
             $bookingDTOs = [];
@@ -21,14 +21,12 @@ class GetBookingByShopIdRepository
             foreach ($bookings as $booking) {
                 $bookingDTO = [
                     'id' => $booking->id,
-                    'namaPemesan' => $booking->namaPemesan,
                     'nomorMeja' => $booking->nomorMeja,
-                    'telpPemesan' => $booking->telpPemesan,
                     'jamAmbil' => $booking->jamAmbil,
                     'statusAmbil' => $booking->statusAmbil,
-                    'shop_namaToko' => $booking->namaToko,
-                    'shop_nomorToko' => $booking->nomorToko,
-                    'shop_lokasiToko' => $booking->lokasiToko
+                    'user_fullName' => $booking->fullName,
+                    'user_nickname' => $booking->nickname,
+                    'user_phoneNumber' => $booking->phoneNumber
                 ];
 
                 array_push($bookingDTOs, $bookingDTO);

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Exception;
 
-use App\Services\Booking\GetBookingByShopIdService;
+use App\Services\Booking\GetBookingByUserIdService;
 use App\Services\Booking\GetAllBookingService;
 use App\Services\Booking\AddBookingService;
 use App\Services\Booking\EditBookingService;
@@ -15,19 +15,19 @@ use App\Services\Booking\DeleteBookingService;
 class BookingController extends Controller
 {
     public function __construct(
-        private GetBookingByShopIdService $getBookingByShopIdService,
+        private GetBookingByUserIdService $getBookingByUserIdService,
         private GetAllBookingService $getAllBookingService,
         private AddBookingService $addBookingService,
         private EditBookingService $editBookingService,
         private DeleteBookingService $deleteBookingService
     ) {}
 
-    public function getBookingByShopId(Request $request) {
+    public function getBookingByUserId(Request $request) {
         try {
-            $resultData = $this->getBookingByShopIdService->getBookingById($request);
+            $resultData = $this->getBookingByUserIdService->getBookingById($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'Booking data by shop Id retrieved successfully',
+                'message' => 'Booking data by user Id retrieved successfully',
                 'data' => $resultData
             ])->setStatusCode(200);
         } catch (Exception $error) {
@@ -56,7 +56,8 @@ class BookingController extends Controller
 
     public function addBooking(Request $request) {
         try {
-            $resultData = $this->addBookingService->addBooking($request);
+            $user_id = null;
+            $resultData = $this->addBookingService->addBooking($request, $user_id);
             return response()->json([
                 'status' => 'success',
                 'message' => 'Booking data added successfully',

@@ -5,11 +5,11 @@ namespace App\Services\Booking;
 use Exception;
 use Illuminate\Http\Request;
 
-use App\Repositories\Booking\GetBookingByShopIdRepository;
+use App\Repositories\Booking\GetBookingByUserIdRepository;
 
-class GetBookingByShopIdService {
+class GetBookingByUserIdService {
     public function __construct(
-        private GetBookingByShopIdRepository $bookingByIdRepository
+        private GetBookingByUserIdRepository $bookingByIdRepository
     ) {}
 
     /**
@@ -19,12 +19,12 @@ class GetBookingByShopIdService {
     public function getBookingById(Request $request) {
         try {
             $request->validate([
-                'shop_id' => 'required|exists:shops,id',
+                'user_id' => 'required|exists:users,id',
             ]);
 
-            $shop_id = $request->shop_id;
+            $user_id = $request->user_id;
 
-            return $this->bookingByIdRepository->getBookingById($shop_id);
+            return $this->bookingByIdRepository->getBookingById($user_id);
 
         } catch (Exception $error) {
             throw new Exception($error->getMessage());

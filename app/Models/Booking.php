@@ -10,17 +10,20 @@ class Booking extends Model
     use HasFactory;
 
     protected $filllable = [
-        'namaPemesan',
         'nomorMeja',
-        'telpPemesan',
         'jamAmbil',
         'totalHarga',
         'statusAmbil',
-        'shop_id'
+        'user_id'
     ];
 
     public function menus()
     {
         return $this->belongsToMany(Menu::class, 'checkouts', 'idBooking', 'idMenu');
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
     }
 }

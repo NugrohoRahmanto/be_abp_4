@@ -16,12 +16,10 @@ class AddBookingRepository {
     public function addBooking(BookingDTO $bookingDTO) {
         try {
             $booking = new Booking();
-            $booking->namaPemesan = $bookingDTO->namaPemesan;
             $booking->nomorMeja = $bookingDTO->nomorMeja;
-            $booking->telpPemesan = $bookingDTO->telpPemesan;
             $booking->jamAmbil = $bookingDTO->jamAmbil;
             $booking->statusAmbil = $bookingDTO->statusAmbil;
-            $booking->shop_id = $bookingDTO->shop_id;
+            $booking->user_id = $bookingDTO->user_id;
             $booking->save();
 
             return $bookingDTO;
