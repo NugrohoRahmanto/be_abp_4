@@ -21,11 +21,11 @@ class GetAllCheckoutRepository
 
             $bookingDTO = new BookingDTO(
                 id : $booking->id,
-                namaPemesan : $booking->namaPemesan,
                 nomorMeja : $booking->nomorMeja,
-                telpPemesan : $booking->telpPemesan,
                 jamAmbil : $booking->jamAmbil,
+                totalHarga: $booking->totalHarga,
                 statusAmbil : $booking->statusAmbil,
+                statusSelesai: $booking->statusSelesai,
             );
 
             // Mengambil data dari tabel Checkout berdasarkan ID Booking
