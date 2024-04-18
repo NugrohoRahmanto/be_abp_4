@@ -63,6 +63,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/menu/detail/category/delete', [ChooseController::class, 'deleteMenuCategoryByMenuId'])->name('deleteMenuCategoryByMenuId');
 
     Route::get('/booking/byUser', [BookingController::class, 'getBookingByUserId'])->name('getBookingByUserId');
+    Route::get('/booking/prog/byUser', [BookingController::class, 'getOneBookingIdByUserId'])->name('getOneBookingIdByUserId');
     Route::get('/booking/all', [BookingController::class, 'getAllBooking'])->name('getAllBooking');
     Route::post('/booking/add', [BookingController::class, 'addBooking'])->name('addBooking');
     Route::put('/booking/edit', [BookingController::class, 'editBooking'])->name('editBooking');

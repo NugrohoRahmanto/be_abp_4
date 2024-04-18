@@ -9,6 +9,7 @@ class BookingDTO{
         public ?string $jamAmbil = null,
         public ?int $totalHarga = null,
         public ?string $statusAmbil = null,
+        public ?string $statusSelesai = null,
         public ?int $user_id = null,
     ){}
 
@@ -70,6 +71,16 @@ class BookingDTO{
     public function setUserId(?int $user_id): void
     {
         $this->user_id = $user_id;
+    }
+
+    public function getStatusSelesai(): ?string
+    {
+        return $this->statusSelesai;
+    }
+
+    public function setStatusSelesai(?string $statusSelesai): void
+    {
+        $this->statusSelesai = $statusSelesai;
     }
 }
 

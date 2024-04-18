@@ -17,6 +17,7 @@ return new class extends Migration
             $table->time('jamAmbil')->nullable();
             $table->integer('totalHarga')->default(0);
             $table->string('statusAmbil')->nullable();
+            $table->string('statusSelesai')->default('Belum');
 
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Exception;
 
 use App\Services\Booking\GetBookingByUserIdService;
+use App\Services\Booking\GetOneBookingIdByUserIdService;
 use App\Services\Booking\GetAllBookingService;
 use App\Services\Booking\AddBookingService;
 use App\Services\Booking\EditBookingService;
@@ -16,6 +17,7 @@ class BookingController extends Controller
 {
     public function __construct(
         private GetBookingByUserIdService $getBookingByUserIdService,
+        private GetOneBookingIdByUserIdService $getOneBookingByUserIdService,
         private GetAllBookingService $getAllBookingService,
         private AddBookingService $addBookingService,
         private EditBookingService $editBookingService,
@@ -28,6 +30,22 @@ class BookingController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Booking data by user Id retrieved successfully',
+                'data' => $resultData
+            ])->setStatusCode(200);
+        } catch (Exception $error) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $error->getMessage(),
+            ])->setStatusCode(401);
+        }
+    }
+
+    public function getOneBookingIdByUserId(Request $request) {
+        try {
+            $resultData = $this->getOneBookingByUserIdService->getBookingById($request);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Get booking id by user Id retrieved successfully',
                 'data' => $resultData
             ])->setStatusCode(200);
         } catch (Exception $error) {
