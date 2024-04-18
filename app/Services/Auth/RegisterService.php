@@ -47,10 +47,10 @@ class RegisterService {
             );
 
             $userResult = $this->registerRepository->register($userDTO);
-
+            
             if ($userResult->getRole() == 'Buyer') {
-                $user_id = User::latest('id')->first();
-                $addBooking = $this->addBookingService->addBooking($request, $user_id);
+                $user = User::latest('id')->first();
+                $addBooking = $this->addBookingService->addBooking($request, $user->id);
             }
 
             return ([

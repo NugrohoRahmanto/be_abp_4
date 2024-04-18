@@ -23,7 +23,7 @@ class AddBookingService {
     public function addBooking(Request $request, $user_id) {
         try {
             $request->validate([
-                'user_id' => 'required|exists:users,id',
+                $user_id => 'exists:users,id',
             ]);
 
             $bookingDTO = new BookingDTO(
