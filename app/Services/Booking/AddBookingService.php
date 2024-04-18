@@ -40,6 +40,7 @@ class AddBookingService {
                 'nomorMeja' => $userResult->getNomorMeja(),
                 'jamAmbil' => $userResult->getJamAmbil(),
                 'statusAmbil' => $userResult->getStatusAmbil(),
+                'statusSelesai' => $userResult->getStatusSelesai(),
                 'user_id' => $userResult->getUserId(),
             ]);
 

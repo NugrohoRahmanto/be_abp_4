@@ -14,6 +14,7 @@ class Booking extends Model
         'jamAmbil',
         'totalHarga',
         'statusAmbil',
+        'statusBayar',
         'user_id'
     ];
 
