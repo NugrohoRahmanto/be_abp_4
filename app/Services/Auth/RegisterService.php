@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 use App\DTO\UserDTO;
+use App\Models\User;
 use Exception;
 
 use App\Repositories\Auth\RegisterRepository;
@@ -46,7 +47,11 @@ class RegisterService {
             );
 
             $userResult = $this->registerRepository->register($userDTO);
-            $addBooking = $this->addBookingService->addBooking($request, $userResult);
+
+            if ($userResult->getRole() == 'Buyer') {
+                $user_id = User::latest('id')->first();
+                $addBooking = $this->addBookingService->addBooking($request, $user_id);
+            }
 
             return ([
                 'fullName' => $userResult->getFullName(),
