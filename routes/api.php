@@ -62,7 +62,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/menu/detail/category/add', [ChooseController::class, 'addMenuCategoryByMenuId'])->name('addMenuCategoryByMenuId');
     Route::delete('/menu/detail/category/delete', [ChooseController::class, 'deleteMenuCategoryByMenuId'])->name('deleteMenuCategoryByMenuId');
 
-    Route::get('/booking/byShop', [BookingController::class, 'getBookingByShopId'])->name('getBookingByShopId');
+    Route::get('/booking/byUser', [BookingController::class, 'getBookingByUserId'])->name('getBookingByUserId');
     Route::get('/booking/all', [BookingController::class, 'getAllBooking'])->name('getAllBooking');
     Route::post('/booking/add', [BookingController::class, 'addBooking'])->name('addBooking');
     Route::put('/booking/edit', [BookingController::class, 'editBooking'])->name('editBooking');
