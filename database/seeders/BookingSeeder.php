@@ -16,6 +16,7 @@ class BookingSeeder extends Seeder
             'nomorMeja' => '' . rand(1, 10),
             'jamAmbil' => '12:00:00',
             'statusAmbil' => 'Take Away',
+            'statusSelesai' => 'Selesai',
             'user_id' => 2
         ]);
 
