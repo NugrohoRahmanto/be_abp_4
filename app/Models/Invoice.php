@@ -10,6 +10,7 @@ class Invoice extends Model
     use HasFactory;
 
     protected $fillable = [
+        'metodePembayaran',
         'booking_id'
     ];
 

@@ -22,6 +22,13 @@ class BookingSeeder extends Seeder
 
         Booking::create([
             'nomorMeja' => '' . rand(1, 10),
+            'jamAmbil' => '12:30:00',
+            'statusAmbil' => 'Take Away',
+            'user_id' => 2
+        ]);
+
+        Booking::create([
+            'nomorMeja' => '' . rand(1, 10),
             'jamAmbil' => '13:00:00',
             'statusAmbil' => 'Take Away',
             'user_id' => 3

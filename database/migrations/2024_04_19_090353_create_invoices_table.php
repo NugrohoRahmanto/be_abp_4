@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('invoices', function (Blueprint $table) {
-            $table->id();  
+            $table->id();
+            $table->string('metodePembayaran')->default('Cash');
 
             $table->foreignId('booking_id')->constrained('bookings')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
