@@ -14,8 +14,8 @@ class InvoiceController extends Controller
 {
     public function __construct(
         private GetAllInvoiceMenuByBookingIdService $getAllInvoiceMenuByBookingIdService,
-        // private AddInvoiceService $addInvoiceService,
-        // private DeleteInvoiceService $deleteInvoiceService
+        private AddInvoiceService $addInvoiceService,
+        private DeleteInvoiceService $deleteInvoiceService
     ) {}
 
     public function getAllInvoiceMenuByBookingId(Request $request) {
@@ -36,11 +36,11 @@ class InvoiceController extends Controller
 
     public function addInvoice(Request $request) {
         try {
-            // $resultData = $this->addInvoiceService->addInvoice($request);
+            $resultData = $this->addInvoiceService->addInvoice($request);
             return response()->json([
                 'status' => 'success',
                 'message' => 'Invoice data added successfully',
-                // 'data' => $resultData
+                'data' => $resultData
             ])->setStatusCode(201);
         } catch (Exception $error) {
             return response()->json([
@@ -52,7 +52,7 @@ class InvoiceController extends Controller
 
     public function deleteInvoice(Request $request) {
         try {
-            // $resultData = $this->deleteInvoiceService->deleteInvoice($request);
+            $resultData = $this->deleteInvoiceService->deleteInvoice($request);
             return response()->json([
                 'status' => 'success',
                 'message' => 'Invoice data deleted successfully',

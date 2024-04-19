@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('shop_orders', function (Blueprint $table) {
             $table->id();
-            $table->string('metodePembayaran')->default('Cash');
-            $table->string('statusLengkap')->default('Belum Lengkap');
+        $table->integer('banyakPesanan')->default(0);
+            $table->string('statusMasak')->default('Proses');
 
             $table->foreignId('booking_id')->constrained('bookings')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('menu_id')->constrained('menus')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('invoices');
+        Schema::dropIfExists('shop_orders');
     }
 };

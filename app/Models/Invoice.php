@@ -11,7 +11,8 @@ class Invoice extends Model
 
     protected $fillable = [
         'metodePembayaran',
-        'booking_id'
+        'booking_id',
+        'statusLengkap'
     ];
 
     public function booking()
