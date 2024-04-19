@@ -23,9 +23,9 @@ class Booking extends Model
         return $this->belongsToMany(Menu::class, 'checkouts', 'idBooking', 'idMenu');
     }
 
-    public function users()
+    public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function invoices()

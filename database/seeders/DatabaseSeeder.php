@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             MenuSeeder::class,
             BookingSeeder::class,
             CheckoutSeeder::class,
+            InvoiceSeeder::class,
         ]);
     }
 }

@@ -5,10 +5,12 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ChooseController;
 use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MenuCategoryController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -72,6 +74,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/booking/detail/menu/{bookingId}', [CheckoutController::class, 'getAllMenuByBookingId'])->name('etAllMenuByBookingId');
     Route::post('/booking/detail/menu/add', [CheckoutController::class, 'addMenuByBookingId'])->name('ddMenuByBookingId');
     Route::delete('/booking/detail/menu/delete', [CheckoutController::class, 'deleteMenuByBookingId'])->name('deleteMenuByBookingId');
+
+    Route::get('/invoice/menu/ByBooking', [InvoiceController::class, 'getAllInvoiceMenuByBookingId'])->name('getAllInvoiceMenuByBookingId');
+    Route::post('/invoice/add', [InvoiceController::class, 'addInvoice'])->name('addInvoice');
+    Route::delete('/invoice/delete', [InvoiceController::class, 'deleteInvoice'])->name('deleteInvoice');
 });
 
 Route::group(['prefix' => 'menu'], function() {
