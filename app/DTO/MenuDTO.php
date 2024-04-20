@@ -3,7 +3,7 @@
 namespace App\DTO;
 class MenuDTO {
     public function __construct(
-        public ?int $id,
+        public ?int $id = null,
         public ?string $namaMenu = null,
         public ?int $hargaMenu = null,
         public ?int $stokMenu = null,
