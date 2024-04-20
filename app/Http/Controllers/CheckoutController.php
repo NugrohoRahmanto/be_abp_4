@@ -8,6 +8,7 @@ use Exception;
 
 use App\Services\Checkout\GetAllCheckoutService;
 use App\Services\Checkout\AddCheckoutService;
+use App\Services\Checkout\EditCheckoutService;
 use App\Services\Checkout\DeleteCheckoutService;
 
 class CheckoutController extends Controller
@@ -15,6 +16,7 @@ class CheckoutController extends Controller
     public function __construct(
         private GetAllCheckoutService $getAllCheckoutService,
         private AddCheckoutService $addCheckoutService,
+        private EditCheckoutService $editCheckoutService,
         private DeleteCheckoutService $deleteCheckoutService
     ) {}
 
@@ -42,6 +44,22 @@ class CheckoutController extends Controller
                 'message' => 'Menu checkout from this booking data added successfully',
                 'data' => $resultData
             ])->setStatusCode(201);
+        } catch (Exception $error) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $error->getMessage(),
+            ])->setStatusCode(401);
+        }
+    }
+
+    public function editMenuByBookingId(Request $request) {
+        try {
+            $resultData = $this->editCheckoutService->editCheckout($request);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Menu checkout from this booking data edited successfully',
+                'data' => $resultData
+            ])->setStatusCode(200);
         } catch (Exception $error) {
             return response()->json([
                 'status' => 'error',

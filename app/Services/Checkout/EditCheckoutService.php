@@ -2,31 +2,33 @@
 
 namespace App\Services\Checkout;
 
-use App\DTO\CheckoutDTO;
 use Exception;
-use App\Repositories\Checkout\DeleteCheckoutRepository;
+use App\Repositories\Checkout\EditCheckoutRepository;
 use Illuminate\Http\Request;
+use App\DTO\CheckoutDTO;
 
-class DeleteCheckoutService
+class EditCheckoutService
 {
     public function __construct(
-        private DeleteCheckoutRepository $checkoutRepository,
+        private EditCheckoutRepository $checkoutRepository,
     ) {}
 
-    public function deleteCheckout(Request $request)
+    public function editCheckout(Request $request)
     {
         try {
             request()->validate([
                 'bookingId' => 'required',
                 'menuId' => 'required',
+                'quantity' => 'required'
             ]);
 
             $checkoutDTO = new CheckoutDTO(
                 idBooking: $request->bookingId,
-                idMenu: $request->menuId
+                idMenu: $request->menuId,
+                quantity: $request->quantity
             );
 
-            $result = $this->checkoutRepository->deleteCheckout($checkoutDTO);
+            $result = $this->checkoutRepository->editCheckout($checkoutDTO);
         
             return $result;
         } catch (Exception $error) {

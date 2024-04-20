@@ -3,9 +3,9 @@
 namespace App\DTO;
 class CheckoutDTO{
     public function __construct(
-        public ?int $idBooking,
-        public ?int $idMenu,
-        public ?int $quantity,
+        public ?int $idBooking = null,
+        public ?int $idMenu = null,
+        public ?int $quantity = null,
     ){}
 
     public function getIdMenu(): ?int

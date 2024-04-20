@@ -2,6 +2,7 @@
 
 namespace App\Services\Checkout;
 
+use App\DTO\CheckoutDTO;
 use Exception;
 use App\Repositories\Checkout\AddCheckoutRepository;
 use Illuminate\Http\Request;
@@ -15,14 +16,22 @@ class AddCheckoutService
     public function addCheckout(Request $request)
     {
         try {
-            $bookingId = $request->bookingId;
-            $menuId = $request->menuId;
-            $quantity = $request->quantity;
+            request()->validate([
+                'bookingId' => 'required',
+                'menuId' => 'required',
+                'quantity' => 'required'
+            ]);
 
-            if ($menuId == 0) {
+            $checkoutDTO = new CheckoutDTO(
+                idBooking: $request->bookingId,
+                idMenu: $request->menuId,
+                quantity: $request->quantity
+            );
+
+            if ($checkoutDTO->getIdMenu() == 0) {
                 throw new Exception('Please select menu!');
             }else{
-                $result = $this->checkoutRepository->addCheckout($bookingId, $menuId, $quantity);
+                $result = $this->checkoutRepository->addCheckout($checkoutDTO);
             }
 
             return $result;

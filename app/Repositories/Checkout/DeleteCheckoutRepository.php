@@ -2,23 +2,24 @@
 
 namespace App\Repositories\Checkout;
 
+use App\DTO\CheckoutDTO;
 use Exception;
 use App\Models\Checkout;
 
 class DeleteCheckoutRepository
 {
-    public function deleteCheckout($idBooking, $idMenu)
+    public function deleteCheckout(CheckoutDTO $checkoutDTO)
     {
         try {
-            $relation = Checkout::where('idBooking', $idBooking)
-                ->where('idMenu', $idMenu)
+            $relation = Checkout::where('idBooking', $checkoutDTO->getIdBooking())
+                ->where('idMenu', $checkoutDTO->getIdMenu())
                 ->first();
 
             if (!$relation) {
                 throw new Exception('Booking-Menu relation not found');
             }else{
-                Checkout::where('idBooking', $idBooking)
-                ->where('idMenu', $idMenu)
+                Checkout::where('idBooking', $checkoutDTO->getIdBooking())
+                ->where('idMenu', $checkoutDTO->getIdMenu())
                 ->delete();
             }
 

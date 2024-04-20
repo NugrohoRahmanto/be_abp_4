@@ -72,8 +72,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/booking/edit', [BookingController::class, 'editBooking'])->name('editBooking');
     Route::delete('/booking/delete', [BookingController::class, 'deletebooking'])->name('deletebooking');
 
-    Route::get('/booking/detail/menu/{bookingId}', [CheckoutController::class, 'getAllMenuByBookingId'])->name('etAllMenuByBookingId');
-    Route::post('/booking/detail/menu/add', [CheckoutController::class, 'addMenuByBookingId'])->name('ddMenuByBookingId');
+    Route::get('/booking/detail/menu/{bookingId}', [CheckoutController::class, 'getAllMenuByBookingId'])->name('getAllMenuByBookingId');
+    Route::post('/booking/detail/menu/add', [CheckoutController::class, 'addMenuByBookingId'])->name('addMenuByBookingId');
+    Route::put('/booking/detail/menu/edit', [CheckoutController::class, 'editMenuByBookingId'])->name('editMenuByBookingId');
     Route::delete('/booking/detail/menu/delete', [CheckoutController::class, 'deleteMenuByBookingId'])->name('deleteMenuByBookingId');
 
     Route::get('/invoice/menu/ByBooking', [InvoiceController::class, 'getAllInvoiceMenuByBookingId'])->name('getAllInvoiceMenuByBookingId');
