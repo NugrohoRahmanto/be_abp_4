@@ -12,6 +12,7 @@ use App\Services\Menu\EditMenuService;
 use App\Services\Menu\DeleteMenuService;
 use App\Services\Menu\GetMenuByIdService;
 use App\Services\Menu\GetAllPaidedMenuByShopService;
+use App\Services\Menu\DonePaidedMenuByShopService;
 
 class MenuController extends Controller
 {
@@ -19,6 +20,7 @@ class MenuController extends Controller
         private GetMenuByIdService $getMenuByIdService,
         private GetAllMenuWithShopNameService $getAllMenuService,
         private GetAllPaidedMenuByShopService $getAllPaidedMenuByShopService,
+        private DonePaidedMenuByShopService $donePaidedMenuByShopService,
         private AddMenuService $addMenuService,
         private EditMenuService $editMenuService,
         private DeleteMenuService $deleteMenuService
@@ -62,7 +64,23 @@ class MenuController extends Controller
             $resultData = $this->getAllPaidedMenuByShopService->getAllPaidedMenuByShop($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'All menu data retrieved successfully',
+                'message' => 'All paided menu data retrieved successfully',
+                'data' => $resultData
+            ])->setStatusCode(200);
+        } catch (Exception $error) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $error->getMessage(),
+            ])->setStatusCode(401);
+        }
+    }
+
+    public function donePaidedMenuByShop(Request $request) {
+        try {
+            $resultData = $this->donePaidedMenuByShopService->donePaidedMenuByShop($request);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Paided menu data done to procced successfully',
                 'data' => $resultData
             ])->setStatusCode(200);
         } catch (Exception $error) {

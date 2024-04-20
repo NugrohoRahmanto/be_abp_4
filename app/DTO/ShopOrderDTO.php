@@ -3,11 +3,11 @@
 namespace App\DTO;
 class ShopOrderDTO {
     public function __construct(
-        public ?int $id,
-        public ?int $booking_id,
-        public ?int $shop_id,
-        public ?int $menu_id,
-        public ?int $banyakPesanan,
+        public ?int $id = null,
+        public ?int $booking_id = null,
+        public ?int $shop_id = null,
+        public ?int $menu_id = null,
+        public ?int $banyakPesanan = null,
         public ?string $statusMasak = null,
     )
     {}
@@ -50,6 +50,14 @@ class ShopOrderDTO {
 
     public function setStatusMasak(string $statusMasak): void {
         $this->statusMasak = $statusMasak;
+    }
+
+    public function getMenuId(): ?int {
+        return $this->menu_id;
+    }
+
+    public function setMenuId(int $menu_id): void {
+        $this->menu_id = $menu_id;
     }
 }
 
