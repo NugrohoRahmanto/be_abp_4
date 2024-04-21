@@ -61,6 +61,7 @@ class AddInvoiceRepository {
 
             $selesaiBooking = Booking::find($invoiceDTO->booking_id);
             $selesaiBooking->statusSelesai = 'Selesai';
+            $selesaiBooking->save();
 
             $getUser = $this->getUserInfoService->getUserInfo($request);
             $addNewBooking = $this->addBookingService->addBooking($request, $getUser->id);
