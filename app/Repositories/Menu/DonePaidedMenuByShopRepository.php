@@ -29,7 +29,7 @@ class DonePaidedMenuByShopRepository
                 ->where('statusMasak', '<>', 'Selesai')
                 ->count();
 
-            if ($completedOrders === 0) {
+            if ($completedOrders == 0) {
                 Invoice::where('booking_id', $shopOrderDTO->getBookingId())
                     ->update(['statusLengkap' => 'Selesai']);
             }
