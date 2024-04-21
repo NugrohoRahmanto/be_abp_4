@@ -24,7 +24,7 @@ class AddShopImageService {
         try {
             $request->validate([
                 'id' => 'required|exist:shops,id',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'image' => 'required',
             ]);
 
             $shopDTO = new ShopDTO(

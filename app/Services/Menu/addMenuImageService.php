@@ -24,7 +24,7 @@ class AddMenuImageService {
         try {
             $request->validate([
                 'id' => 'required|exist:menus,id',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'image' => 'required',
             ]);
 
             $menuDTO = new MenuDTO(
