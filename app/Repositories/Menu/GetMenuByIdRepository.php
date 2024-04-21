@@ -12,7 +12,7 @@ class GetMenuByIdRepository
     {
         try{
             $menus = Menu::join('shops', 'menus.shop_id', '=', 'shops.id')
-                ->select('menus.*', 'shops.namaToko')
+                ->select('menus.*', 'shops.namaToko', 'menus.image as imageMenu', 'shops.image as imageToko')
                 ->where('menus.shop_id', $shop_id)
                 ->orderBy('menus.namaMenu', 'asc')
                 ->get();
@@ -30,7 +30,9 @@ class GetMenuByIdRepository
                     'hargaMenu' => $menu->hargaMenu,
                     'stokMenu' => $menu->stokMenu,
                     'deskripsiMenu' => $menu->deskripsiMenu,
-                    'namaToko' => $menu->namaToko
+                    'namaToko' => $menu->namaToko,
+                    'imageMenu' => $menu->imageMenu,
+                    'imageToko' => $menu->imageToko,
                 ];
 
                 array_push($menuDTOs, $menuDTO);

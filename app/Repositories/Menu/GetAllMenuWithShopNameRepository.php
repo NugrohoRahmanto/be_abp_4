@@ -12,7 +12,7 @@ class GetAllMenuWithShopNameRepository
     {
         try{
             $menus = Menu::join('shops', 'menus.shop_id', '=', 'shops.id')
-                ->select('menus.*', 'shops.namaToko')
+                ->select('menus.*', 'shops.namaToko', 'shops.image as imageToko', 'menus.image as imageMenu')
                 ->orderBy('shops.namaToko', 'asc')
                 ->get();
 
@@ -26,7 +26,9 @@ class GetAllMenuWithShopNameRepository
                     'deskripsiMenu' => $menu->deskripsiMenu,
                     'stokMenu' => $menu->stokMenu,
                     'shop_id' => $menu->shop_id,
-                    'shop_namaToko' => $menu->namaToko
+                    'shop_namaToko' => $menu->namaToko,
+                    'imageShop' => $menu->imageToko,
+                    'imageMenu' => $menu->imageMenu,
                 ];
 
                 array_push($menuDTOs, $menuDTO);
