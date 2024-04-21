@@ -7,7 +7,6 @@ use App\Services\Auth\GetUserInfoService;
 use App\Services\Auth\RegisterService;
 use App\Services\Auth\LoginService;
 use App\Services\Auth\LogoutService;
-use Illuminate\Support\Facades\Auth;
 use Exception;
 use App\Models\User;
 

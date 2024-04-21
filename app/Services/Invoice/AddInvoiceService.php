@@ -32,7 +32,7 @@ class AddInvoiceService {
                 booking_id: $request->booking_id,
             );
 
-            return $this->InvoiceRepository->addInvoiceRepository($invoiceDTO);
+            return $this->InvoiceRepository->addInvoiceRepository($request, $invoiceDTO);
 
         } catch (Exception $error) {
             throw new Exception($error->getMessage());

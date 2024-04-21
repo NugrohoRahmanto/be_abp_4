@@ -4,18 +4,26 @@ namespace App\Repositories\Invoice;
 
 use Exception;
 use App\DTO\InvoiceDTO;
+use Illuminate\Http\Request;
 
 use App\Models\Invoice;
 use App\Models\Checkout;
 use App\Models\ShopOrder;
 
+use App\Services\Auth\GetUserInfoService;
+use App\Services\Booking\AddBookingService;
+
 class AddInvoiceRepository {
+    public function __construct(
+        private GetUserInfoService $getUserInfoService,
+        private AddBookingService $addBookingService
+    ) {}
     /**
      * Register new Invoice
      * @param InvoiceDTO $InvoiceDTO
      * @return InvoiceDTO
      */
-    public function addInvoiceRepository(InvoiceDTO $invoiceDTO) {
+    public function addInvoiceRepository(Request $request, InvoiceDTO $invoiceDTO) {
         try {
             $invoice = new Invoice();
             $invoice->metodePembayaran = $invoiceDTO->metodePembayaran;
@@ -49,6 +57,9 @@ class AddInvoiceRepository {
                 $SO->statusMasak = 'Proses';
                 $SO->save();
             }
+
+            $getUser = $this->getUserInfoService->getUserInfo($request);
+            $addNewBooking = $this->addBookingService->addBooking($request, $getUser->id);
 
             return $invoiceDTO;
         } catch (Exception $error) {
