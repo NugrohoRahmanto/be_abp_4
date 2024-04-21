@@ -24,7 +24,6 @@ class GetAllShopWithUserRepository
                     'lokasiToko' => $shop->lokasiToko,
                     'user_id' => $shop->user_id,
                     'user_fullName' => $shop->fullName,
-                    'image' => $shop->image,
                 ];
 
                 array_push($shopDTOs, $shopDTO);

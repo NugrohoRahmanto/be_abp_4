@@ -3,10 +3,11 @@
 namespace App\DTO;
 class InvoiceDTO {
     public function __construct(
-        public ?int $id,
+        public ?int $id = null,
         public ?string $metodePembayaran = null,
         public ?int $booking_id = null,
-        public ?string $statusLengkap = null
+        public ?string $statusLengkap = null,
+        public ?int $user_id = null
     )
     {}
     public function getId(): ?int {
@@ -39,6 +40,14 @@ class InvoiceDTO {
 
     public function setStatusLengkap(string $statusLengkap): void {
         $this->statusLengkap = $statusLengkap;
+    }
+
+    public function getUserId(): ?int {
+        return $this->user_id;
+    }
+
+    public function setUserId(int $user_id): void {
+        $this->user_id = $user_id;
     }
 }
 

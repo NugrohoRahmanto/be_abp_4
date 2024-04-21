@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('metodePembayaran')->default('Cash');
             $table->string('statusLengkap')->default('Belum Lengkap');
+            $table->string('user_id')->nullable();
 
             $table->foreignId('booking_id')->constrained('bookings')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

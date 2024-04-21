@@ -23,6 +23,7 @@ class AddInvoiceService {
             $request->validate([
                 'metodePembayaran' => 'required',
                 'booking_id' => 'exists:bookings,id',
+                'user_id' => 'exists:users,id',
             ]);
 
             $invoiceDTO = new InvoiceDTO(
@@ -30,6 +31,7 @@ class AddInvoiceService {
                 statusLengkap: "Belum Lengkap",
                 metodePembayaran: $request->metodePembayaran,
                 booking_id: $request->booking_id,
+                user_id: $request->user_id
             );
 
             return $this->InvoiceRepository->addInvoiceRepository($request, $invoiceDTO);

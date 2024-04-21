@@ -29,6 +29,7 @@ class AddInvoiceRepository {
             $invoice = new Invoice();
             $invoice->metodePembayaran = $invoiceDTO->metodePembayaran;
             $invoice->booking_id = $invoiceDTO->booking_id;
+            $invoice->user_id = $invoiceDTO->user_id;
             $invoice->save();
 
             $checkouts = Checkout::join('menus', 'checkouts.idMenu', '=', 'menus.id')

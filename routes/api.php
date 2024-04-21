@@ -10,8 +10,6 @@ use App\Http\Controllers\MenuCategoryController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
-use App\Models\Invoice;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,6 +56,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/discount/delete', [DiscountController::class, 'deleteDiscount'])->name('deleteDiscount');
 
     Route::get('/menu/all/paid/byShop', [MenuController::class, 'getAllPaidedMenuByShop'])->name('getAllPaidedMenuByShop');
+    Route::get('/menu/all/paid/byInvoice', [MenuController::class, 'getAllPaidedMenuByInvoice'])->name('getAllPaidedMenuByInvoice');
     Route::post('/menu/done/paid/byShop', [MenuController::class, 'donePaidedMenuByShop'])->name('donePaidedMenuByShop');
     Route::post('/menu/add', [MenuController::class, 'addMenu'])->name('addMenu');
     Route::put('/menu/add/image', [MenuController::class, 'addMenuImage'])->name('addMenuImage');
@@ -81,8 +80,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/booking/detail/menu/delete', [CheckoutController::class, 'deleteMenuByBookingId'])->name('deleteMenuByBookingId');
 
     Route::get('/invoice/menu/ByBooking', [InvoiceController::class, 'getAllInvoiceMenuByBookingId'])->name('getAllInvoiceMenuByBookingId');
+    Route::get('/invoice/all/byUser', [InvoiceController::class, 'getAllInvoiceByUserId'])->name('getAllInvoiceByUserId');
     Route::post('/invoice/add', [InvoiceController::class, 'addInvoice'])->name('addInvoice');
-    Route::delete('/invoice/delete', [InvoiceController::class, 'deleteInvoice'])->name('deleteInvoice');
+    Route::delete('/invoice/delete', [InvoiceController::class, 'deleteInvoice'])->name('deleteInvoice');                                   
 });
 
 Route::group(['prefix' => 'menu'], function() {
