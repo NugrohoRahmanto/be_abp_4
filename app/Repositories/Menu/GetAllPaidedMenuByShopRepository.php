@@ -25,7 +25,7 @@ class GetAllPaidedMenuByShopRepository
 
                 $qtyShop = ShopOrder::where('menu_id', $shopOrder->menu_id)
                 ->where('booking_id', $shopOrder->booking_id)
-                ->select('banyakPesanan')
+                ->select('banyakPesanan', 'statusMasak')
                 ->get();
 
                 if ($menu && $booking) {
