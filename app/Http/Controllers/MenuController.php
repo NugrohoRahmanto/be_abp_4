@@ -8,6 +8,7 @@ use Exception;
 
 use App\Services\Menu\GetAllMenuWithShopNameService;
 use App\Services\Menu\AddMenuService;
+use App\Services\Menu\AddMenuImageService;
 use App\Services\Menu\EditMenuService;
 use App\Services\Menu\DeleteMenuService;
 use App\Services\Menu\GetMenuByIdService;
@@ -22,6 +23,7 @@ class MenuController extends Controller
         private GetAllPaidedMenuByShopService $getAllPaidedMenuByShopService,
         private DonePaidedMenuByShopService $donePaidedMenuByShopService,
         private AddMenuService $addMenuService,
+        private AddMenuImageService $addMenuImageService,
         private EditMenuService $editMenuService,
         private DeleteMenuService $deleteMenuService
     ) {}
@@ -97,6 +99,22 @@ class MenuController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Menu data added successfully',
+                'data' => $resultData
+            ])->setStatusCode(201);
+        } catch (Exception $error) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $error->getMessage(),
+            ])->setStatusCode(401);
+        }
+    }
+
+    public function addMenuImage(Request $request) {
+        try {
+            $resultData = $this->addMenuImageService->addMenuImage($request);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Menu image data added successfully',
                 'data' => $resultData
             ])->setStatusCode(201);
         } catch (Exception $error) {

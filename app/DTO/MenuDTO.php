@@ -8,6 +8,7 @@ class MenuDTO {
         public ?int $hargaMenu = null,
         public ?int $stokMenu = null,
         public ?string $deskripsiMenu = null,
+        public ?string $image = null,
         public ?int $shop_id = null,
     )
     {}
@@ -58,6 +59,14 @@ class MenuDTO {
 
     public function setShopId(int $shop_id): void {
         $this->shop_id = $shop_id;
+    }
+
+    public function getImage(): ?string {
+        return $this->image;
+    }
+
+    public function setImage(string $image): void {
+        $this->image = $image;
     }
 }
 

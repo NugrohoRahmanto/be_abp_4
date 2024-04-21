@@ -13,6 +13,7 @@ class Shop extends Model
         'namaToko',
         'nomorToko',
         'lokasiToko',
+        'image',
 
         'user_id'
     ];

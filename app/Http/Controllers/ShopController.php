@@ -9,6 +9,7 @@ use Exception;
 use App\Services\Shop\GetShopByUserIdService;
 use App\Services\Shop\GetAllShopWithUserService;
 use App\Services\Shop\AddShopService;
+use App\Services\Shop\AddShopImageService;
 use App\Services\Shop\EditShopService;
 use App\Services\Shop\DeleteShopService;
 
@@ -18,6 +19,7 @@ class ShopController extends Controller
         private GetShopByUserIdService $getShopByUserIdService,
         private GetAllShopWithUserService $getAllShopWithUserService,
         private AddShopService $addShopService,
+        private AddShopImageService $addShopImageService,
         private EditShopService $editShopService,
         private DeleteShopService $deleteShopService
     ) {}
@@ -60,6 +62,22 @@ class ShopController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'Shop data added successfully',
+                'data' => $resultData
+            ])->setStatusCode(201);
+        } catch (Exception $error) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $error->getMessage(),
+            ])->setStatusCode(401);
+        }
+    }
+
+    public function addShopImage(Request $request) {
+        try {
+            $resultData = $this->addShopImageService->addShopImage($request);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Shop image data added successfully',
                 'data' => $resultData
             ])->setStatusCode(201);
         } catch (Exception $error) {

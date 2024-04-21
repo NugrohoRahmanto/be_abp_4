@@ -48,6 +48,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('/shop/byUser', [ShopController::class, 'getShopByUserId'])->name('getShopByUserId');
     Route::post('/shop/add', [ShopController::class, 'addShop'])->name('addShop');
+    Route::post('/shop/add/image', [ShopController::class, 'addShopImage'])->name('addShopImage');
     Route::put('/shop/edit', [ShopController::class, 'editShop'])->name('editShop');
     Route::delete('/shop/delete', [ShopController::class, 'deleteShop'])->name('deleteShop');
 
@@ -59,6 +60,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/menu/all/paid/byShop', [MenuController::class, 'getAllPaidedMenuByShop'])->name('getAllPaidedMenuByShop');
     Route::post('/menu/done/paid/byShop', [MenuController::class, 'donePaidedMenuByShop'])->name('donePaidedMenuByShop');
     Route::post('/menu/add', [MenuController::class, 'addMenu'])->name('addMenu');
+    Route::post('/menu/add/image', [MenuController::class, 'addMenuImage'])->name('addMenuImage');
     Route::put('/menu/edit', [MenuController::class, 'editMenu'])->name('editMenu');
     Route::delete('/menu/delete', [MenuController::class, 'deleteMenu'])->name('deleteMenu');
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('hargaMenu');
             $table->integer('stokMenu');
             $table->string('deskripsiMenu')->nullable();
+            $table->string('image')->nullable();
 
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
