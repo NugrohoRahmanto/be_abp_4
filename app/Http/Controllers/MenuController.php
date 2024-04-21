@@ -13,6 +13,7 @@ use App\Services\Menu\EditMenuService;
 use App\Services\Menu\DeleteMenuService;
 use App\Services\Menu\GetMenuByIdService;
 use App\Services\Menu\GetAllPaidedMenuByShopService;
+use App\Services\Menu\GetAllPaidedMenuByInvoiceService;
 use App\Services\Menu\DonePaidedMenuByShopService;
 
 class MenuController extends Controller
@@ -21,6 +22,7 @@ class MenuController extends Controller
         private GetMenuByIdService $getMenuByIdService,
         private GetAllMenuWithShopNameService $getAllMenuService,
         private GetAllPaidedMenuByShopService $getAllPaidedMenuByShopService,
+        private GetAllPaidedMenuByInvoiceService $getAllPaidedMenuByInvoiceService,
         private DonePaidedMenuByShopService $donePaidedMenuByShopService,
         private AddMenuService $addMenuService,
         private AddMenuImageService $addMenuImageService,
@@ -61,12 +63,28 @@ class MenuController extends Controller
         }
     }
 
+    public function getAllPaidedMenuByInvoice(Request $request) {
+        try {
+            $resultData = $this->getAllPaidedMenuByInvoiceService->getAllPaidedMenuByInvoice($request);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'All paided menu data by invoice retrieved successfully',
+                'data' => $resultData
+            ])->setStatusCode(200);
+        } catch (Exception $error) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $error->getMessage(),
+            ])->setStatusCode(401);
+        }
+    }
+
     public function getAllPaidedMenuByShop(Request $request) {
         try {
             $resultData = $this->getAllPaidedMenuByShopService->getAllPaidedMenuByShop($request);
             return response()->json([
                 'status' => 'success',
-                'message' => 'All paided menu data retrieved successfully',
+                'message' => 'All paided menu data by shop retrieved successfully',
                 'data' => $resultData
             ])->setStatusCode(200);
         } catch (Exception $error) {
