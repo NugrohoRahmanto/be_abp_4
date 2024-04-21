@@ -23,7 +23,7 @@ class AddShopImageService {
     public function addShopImage(Request $request) {
         try {
             $request->validate([
-                'id' => 'required|exist:shops,id',
+                'id' => 'required|exists:shops,id',
                 'image' => 'required',
             ]);
 

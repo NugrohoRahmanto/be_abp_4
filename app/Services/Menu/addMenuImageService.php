@@ -23,7 +23,7 @@ class AddMenuImageService {
     public function addMenuImage(Request $request) {
         try {
             $request->validate([
-                'id' => 'required|exist:menus,id',
+                'id' => 'required|exists:menus,id',
                 'image' => 'required',
             ]);
 
