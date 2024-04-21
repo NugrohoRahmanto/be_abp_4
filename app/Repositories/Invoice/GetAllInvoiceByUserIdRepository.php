@@ -19,7 +19,7 @@ class GetAllInvoiceByUserIdRepository
                     'bookings.jamAmbil',
                     'bookings.totalHarga',
                     'bookings.statusAmbil',
-                    'bookings.statusBayar',
+                    'bookings.statusSelesai',
                     'bookings.user_id as booking_user_id',
                 )
                 ->where('invoices.user_id', $invoiceDTO->getUserId())
@@ -38,7 +38,7 @@ class GetAllInvoiceByUserIdRepository
                     'jamAmbil' => $item->jamAmbil,
                     'totalHarga' => $item->totalHarga,
                     'statusAmbil' => $item->statusAmbil,
-                    'statusBayar' => $item->statusBayar,
+                    'statusSelesai' => $item->statusSelesai,
                     'booking_user_id' => $item->booking_user_id,
                 ];
             }
