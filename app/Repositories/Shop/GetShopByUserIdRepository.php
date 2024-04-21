@@ -25,7 +25,8 @@ class GetShopByUserIdRepository
                     'namaToko' => $shop->namaToko,
                     'nomorToko' => $shop->nomorToko,
                     'lokasiToko' => $shop->lokasiToko,
-                    'user_fullName' => $shop->fullName
+                    'user_fullName' => $shop->fullName,
+                    'image' => $shop->image,
                 ];
 
                 array_push($shopDTOs, $shopDTO);
