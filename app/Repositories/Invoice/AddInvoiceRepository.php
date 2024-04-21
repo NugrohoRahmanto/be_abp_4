@@ -41,6 +41,7 @@ class AddInvoiceRepository {
             ->select('checkouts.quantity', 'checkouts.idBooking', 'checkouts.idMenu', 'menus.shop_id', 'menus.hargaMenu', 'menus.namaMenu')
             ->get();
 
+            $sumPrice = 0;
             $shopOrdersData = [];
             foreach ($checkouts as $checkout) {
                 $shopOrderData = [
@@ -51,6 +52,7 @@ class AddInvoiceRepository {
                     'banyakPesanan' => $checkout->quantity,
                     'namaMenu' => $checkout->namaMenu,
                 ];
+                $sumPrice += $checkout->hargaMenu * $checkout->quantity;
                 $shopOrdersData[] = $shopOrderData;
             }
 
@@ -84,6 +86,7 @@ class AddInvoiceRepository {
 
             $selesaiBooking = Booking::find($invoiceDTO->booking_id);
             $selesaiBooking->statusSelesai = 'Selesai';
+            $selesaiBooking->totalHarga = $sumPrice;
             $selesaiBooking->save();
 
             $getUser = $this->getUserInfoService->getUserInfo($request);
