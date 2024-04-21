@@ -18,15 +18,17 @@ class GetAllPaidedMenuByShopRepository
             $orderDetails = [];
 
             foreach ($shopOrders as $shopOrder) {
-                $menu = Menu::find($shopOrder->menu_id);
-                $booking = Booking::find($shopOrder->booking_id);
+                $menuId = $shopOrder->menu_id;
+                $bookingId = $shopOrder->booking_id;
 
-                if ($menu && $booking) {
-                    $orderDetails[] = [
-                        'menu' => $menu,
-                        'booking' => $booking,
+                if (!isset($orderDetails[$menuId])) {
+                    $orderDetails[$menuId] = [
+                        'menu' => Menu::find($menuId),
+                        'bookings' => [],
                     ];
                 }
+
+                $orderDetails[$menuId]['bookings'][] = Booking::find($bookingId);
             }
 
             return $orderDetails;

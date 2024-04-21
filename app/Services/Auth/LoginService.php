@@ -61,7 +61,7 @@ class LoginService {
                             'status' => 'offline'
                         ]);
                     } else {
-                        throw new \Exception("User information not found or invalid.");
+                        throw new \Exception("Your session has ended! Please login again.");
                     }
                     
                     return [
