@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Invoice;
 use App\Models\Checkout;
 use App\Models\ShopOrder;
+use App\Models\Booking;
 
 use App\Services\Auth\GetUserInfoService;
 use App\Services\Booking\AddBookingService;
@@ -57,6 +58,9 @@ class AddInvoiceRepository {
                 $SO->statusMasak = 'Proses';
                 $SO->save();
             }
+
+            $selesaiBooking = Booking::find($invoiceDTO->booking_id);
+            $selesaiBooking->statusSelesai = 'Selesai';
 
             $getUser = $this->getUserInfoService->getUserInfo($request);
             $addNewBooking = $this->addBookingService->addBooking($request, $getUser->id);
