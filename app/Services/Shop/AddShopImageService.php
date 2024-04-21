@@ -28,7 +28,7 @@ class AddShopImageService {
             ]);
 
             $shopDTO = new ShopDTO(
-                id : $request->shop_id,
+                id : $request->id,
                 image: $request->image,
             );
 

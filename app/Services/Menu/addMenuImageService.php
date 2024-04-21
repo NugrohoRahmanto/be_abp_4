@@ -28,7 +28,7 @@ class AddMenuImageService {
             ]);
 
             $menuDTO = new MenuDTO(
-                id : $request->menu_id,
+                id : $request->id,
                 image: $request->image,
             );
 
