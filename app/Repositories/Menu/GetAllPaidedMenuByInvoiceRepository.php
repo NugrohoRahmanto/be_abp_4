@@ -15,7 +15,7 @@ class GetAllPaidedMenuByInvoiceRepository
             $menus = Menu::join('shop_orders', 'menus.id', '=', 'shop_orders.menu_id')
                 ->join('invoices', 'shop_orders.booking_id', '=', 'invoices.booking_id')
                 ->where('invoices.id', $menuDTO->getId())
-                ->select('menus.*', 'shop_orders.statusMasak')
+                ->select('menus.*', 'shop_orders.statusMasak', 'shop_orders.banyakPesanan')
                 ->get();
 
             $menuDTO = [];
@@ -29,7 +29,8 @@ class GetAllPaidedMenuByInvoiceRepository
                     'deskripsi' => $menu->deskripsiMenu,
                     'shop_id' => $menu->shop_id,
                     'image' => $menu->gambar,
-                    'statusMasak' => $menu->statusMasak
+                    'statusMasak' => $menu->statusMasak,
+                    'banyakPesanan' => $menu->banyakPesanan
                 ];
             }
 
