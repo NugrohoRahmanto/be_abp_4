@@ -24,7 +24,6 @@ class EditBookingService {
             // Validate request
             $request->validate([
                 'id' => 'required|exists:bookings,id',
-                'jamAmbil' => 'required',
                 'statusAmbil' => 'required',
             ]);
 
@@ -32,6 +31,7 @@ class EditBookingService {
                 id: $request->id,
                 jamAmbil: $request->jamAmbil,
                 statusAmbil: $request->statusAmbil,
+                nomorMeja: $request->nomorMeja,
             );
 
             $bookingDTO = $this->bookingRepository->editBooking($bookingDTO);
