@@ -14,6 +14,7 @@ class Menu extends Model
         'hargaMenu',
         'deskripsiMenu',
         'stokMenu',
+        'image',
         'shop_id',
         'category_id'
     ];
@@ -26,5 +27,10 @@ class Menu extends Model
     public function menucategories()
     {
         return $this->belongsToMany(MenuCategory::class, 'pilih_category', 'idMenu', 'idCategory');
+    }
+
+    public function bookings()
+    {
+        return $this->belongsToMany(Booking::class, 'checkouts', 'idMenu', 'idBooking');
     }
 }

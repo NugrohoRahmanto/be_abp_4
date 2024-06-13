@@ -25,6 +25,7 @@ class EditShopService {
                 'id' => 'required|exists:shops,id',
                 'namaToko' => 'required',
                 'nomorToko' => 'required',
+                'lokasiToko' => 'required',
                 'user_id' => 'exists:users,id'
             ]);
 
@@ -32,6 +33,7 @@ class EditShopService {
                 id: $request->id,
                 namaToko: $request->namaToko,
                 nomorToko: $request->nomorToko,
+                lokasiToko: $request->lokasiToko,
                 user_id: $request->user_id
             );
 

@@ -25,6 +25,7 @@ class AddShopService {
             $request->validate([
                 'namaToko' => 'required|unique:shops',
                 'nomorToko' => 'required|unique:shops',
+                'lokasiToko' => 'required',
                 'user_id' => 'required|exists:users,id'
             ]);
 
@@ -32,6 +33,7 @@ class AddShopService {
                 id : null,
                 namaToko: $request->namaToko,
                 nomorToko : $request->nomorToko,
+                lokasiToko : $request->lokasiToko,
                 user_id : $request->user_id
             );
 
@@ -39,7 +41,8 @@ class AddShopService {
 
             return ([
                 'namaToko' => $shopResult->getNamaToko(),
-                'nomorToko' => $shopResult->getNomorToko()
+                'nomorToko' => $shopResult->getNomorToko(),
+                'lokasiToko' => $shopResult->getLokasiToko(),
             ]);
 
         } catch (Exception $error) {

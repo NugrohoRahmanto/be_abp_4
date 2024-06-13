@@ -6,6 +6,8 @@ class ShopDTO {
         public ?int $id,
         public ?string $namaToko = null,
         public ?string $nomorToko = null,
+        public ?string $lokasiToko = null,
+        public ?string $image = null,
         public ?int $user_id = null
     )
     {}
@@ -34,12 +36,28 @@ class ShopDTO {
         $this->nomorToko = $nomorToko;
     }
 
+    public function getLokasiToko(): ?string {
+        return $this->lokasiToko;
+    }
+
+    public function setLokasiToko(string $lokasiToko): void {
+        $this->lokasiToko = $lokasiToko;
+    }
+
     public function getUserId(): ?int {
         return $this->user_id;
     }
 
     public function setUserId(int $user_id): void {
         $this->user_id = $user_id;
+    }
+
+    public function getImage(): ?string {
+        return $this->image;
+    }
+
+    public function setImage(string $image): void {
+        $this->image = $image;
     }
 }
 

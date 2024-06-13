@@ -11,12 +11,10 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 use App\Repositories\Auth\ValidateRepository;
-use App\Services\Auth\GetUserInfoService;
 
 class LoginService {
     public function __construct(
-        private ValidateRepository $validateRepository,
-        private GetUserInfoService $getUserInfoService
+        private ValidateRepository $validateRepository
     ) {}
 
     /**
@@ -55,6 +53,17 @@ class LoginService {
                     DB::table('personal_access_tokens')
                         ->where('id', $existingToken->id)
                         ->delete();
+
+                    $user = $request->user();
+
+                    if ($user !== null && isset($user['nickname'])) {
+                        $final = User::where('nickname', $user['nickname'])->update([
+                            'status' => 'offline'
+                        ]);
+                    } else {
+                        throw new \Exception("Your session has ended! Please login again.");
+                    }
+                    
                     return [
                         'status' => 'failed',
                         'message' => 'Token expired',

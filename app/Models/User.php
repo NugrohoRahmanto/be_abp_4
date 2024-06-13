@@ -23,7 +23,8 @@ class User extends Authenticatable
         'password',
         'phoneNumber',
         'address',
-        'role'
+        'role',
+        'status',
     ];
 
     /**
@@ -49,5 +50,10 @@ class User extends Authenticatable
     public function shop()
     {
         return $this->hasOne(Shop::class);
+    }
+
+    public function bookings()
+    {
+        return $this->hasOne(Booking::class);
     }
 }

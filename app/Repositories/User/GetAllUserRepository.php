@@ -22,7 +22,8 @@ class GetAllUserRepository
                     fullName: $user->fullName,
                     phoneNumber : $user->phoneNumber,
                     address : $user->address,
-                    role : $user->role
+                    role : $user->role,
+                    status : $user->status,
                 );
 
                 array_push($userDTOs, $userDTO);

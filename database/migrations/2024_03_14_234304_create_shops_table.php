@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('namaToko');
             $table->string('nomorToko');
+            $table->string('lokasiToko');
+            $table->string('image')->nullable();
 
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

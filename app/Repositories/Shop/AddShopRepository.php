@@ -18,6 +18,7 @@ class AddShopRepository {
             $shop = new Shop();
             $shop->namaToko = $shopDTO->namaToko;
             $shop->nomorToko = $shopDTO->nomorToko;
+            $shop->lokasiToko = $shopDTO->lokasiToko;
             $shop->user_id = $shopDTO->user_id;
             $shop->save();
 
