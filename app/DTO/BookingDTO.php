@@ -5,13 +5,12 @@ namespace App\DTO;
 class BookingDTO{
     public function __construct(
         public ?int $id = null,
-        public ?string $namaPemesan = null,
         public ?int $nomorMeja = null,
-        public ?int $telpPemesan = null,
         public ?string $jamAmbil = null,
         public ?int $totalHarga = null,
         public ?string $statusAmbil = null,
-        public ?int $shop_id = null,
+        public ?string $statusSelesai = null,
+        public ?int $user_id = null,
     ){}
 
     public function getId(): ?int
@@ -24,19 +23,9 @@ class BookingDTO{
         $this->id = $id;
     }
 
-    public function getNamaPemesan(): ?string
-    {
-        return $this->namaPemesan;
-    }
-
     public function getNomorMeja(): ?int
     {
         return $this->nomorMeja;
-    }
-
-    public function getTelpPemesan(): ?int
-    {
-        return $this->telpPemesan;
     }
 
     public function getJamAmbil(): ?string
@@ -54,24 +43,14 @@ class BookingDTO{
         return $this->statusAmbil;
     }
 
-    public function getShopId(): ?int
+    public function getUserId(): ?int
     {
-        return $this->shop_id;
-    }
-
-    public function setNamaPemesan(?string $namaPemesan): void
-    {
-        $this->namaPemesan = $namaPemesan;
+        return $this->user_id;
     }
 
     public function setNomorMeja(?int $nomorMeja): void
     {
         $this->nomorMeja = $nomorMeja;
-    }
-
-    public function setTelpPemesan(?int $telpPemesan): void
-    {
-        $this->telpPemesan = $telpPemesan;
     }
 
     public function setTotalHarga(?int $totalHarga): void
@@ -89,9 +68,19 @@ class BookingDTO{
         $this->statusAmbil = $statusAmbil;
     }
 
-    public function setShopId(?int $shop_id): void
+    public function setUserId(?int $user_id): void
     {
-        $this->shop_id = $shop_id;
+        $this->user_id = $user_id;
+    }
+
+    public function getStatusSelesai(): ?string
+    {
+        return $this->statusSelesai;
+    }
+
+    public function setStatusSelesai(?string $statusSelesai): void
+    {
+        $this->statusSelesai = $statusSelesai;
     }
 }
 

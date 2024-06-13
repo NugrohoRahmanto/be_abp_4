@@ -2,6 +2,7 @@
 
 namespace App\Services\Checkout;
 
+use App\DTO\CheckoutDTO;
 use Exception;
 use App\Repositories\Checkout\DeleteCheckoutRepository;
 use Illuminate\Http\Request;
@@ -15,10 +16,17 @@ class DeleteCheckoutService
     public function deleteCheckout(Request $request)
     {
         try {
-            $bookingId = $request->bookingId;
-            $menuId = $request->menuId;
+            request()->validate([
+                'bookingId' => 'required',
+                'menuId' => 'required',
+            ]);
 
-            $result = $this->checkoutRepository->deleteCheckout($bookingId, $menuId);
+            $checkoutDTO = new CheckoutDTO(
+                idBooking: $request->bookingId,
+                idMenu: $request->menuId
+            );
+
+            $result = $this->checkoutRepository->deleteCheckout($checkoutDTO);
         
             return $result;
         } catch (Exception $error) {

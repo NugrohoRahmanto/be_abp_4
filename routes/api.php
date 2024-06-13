@@ -5,11 +5,11 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ChooseController;
 use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MenuCategoryController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +46,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('/shop/byUser', [ShopController::class, 'getShopByUserId'])->name('getShopByUserId');
     Route::post('/shop/add', [ShopController::class, 'addShop'])->name('addShop');
+    Route::put('/shop/add/image', [ShopController::class, 'addShopImage'])->name('addShopImage');
     Route::put('/shop/edit', [ShopController::class, 'editShop'])->name('editShop');
     Route::delete('/shop/delete', [ShopController::class, 'deleteShop'])->name('deleteShop');
 
@@ -54,7 +55,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/discount/edit', [DiscountController::class, 'editDiscount'])->name('editDiscount');
     Route::delete('/discount/delete', [DiscountController::class, 'deleteDiscount'])->name('deleteDiscount');
 
+    Route::get('/menu/all/paid/byShop', [MenuController::class, 'getAllPaidedMenuByShop'])->name('getAllPaidedMenuByShop');
+    Route::get('/menu/all/paid/byInvoice', [MenuController::class, 'getAllPaidedMenuByInvoice'])->name('getAllPaidedMenuByInvoice');
+    Route::post('/menu/done/paid/byShop', [MenuController::class, 'donePaidedMenuByShop'])->name('donePaidedMenuByShop');
     Route::post('/menu/add', [MenuController::class, 'addMenu'])->name('addMenu');
+    Route::put('/menu/add/image', [MenuController::class, 'addMenuImage'])->name('addMenuImage');
     Route::put('/menu/edit', [MenuController::class, 'editMenu'])->name('editMenu');
     Route::delete('/menu/delete', [MenuController::class, 'deleteMenu'])->name('deleteMenu');
 
@@ -62,15 +67,22 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/menu/detail/category/add', [ChooseController::class, 'addMenuCategoryByMenuId'])->name('addMenuCategoryByMenuId');
     Route::delete('/menu/detail/category/delete', [ChooseController::class, 'deleteMenuCategoryByMenuId'])->name('deleteMenuCategoryByMenuId');
 
-    Route::get('/booking/byShop', [BookingController::class, 'getBookingByShopId'])->name('getBookingByShopId');
+    Route::get('/booking/byUser', [BookingController::class, 'getBookingByUserId'])->name('getBookingByUserId');
+    Route::get('/booking/prog/byUser', [BookingController::class, 'getOneBookingIdByUserId'])->name('getOneBookingIdByUserId');
     Route::get('/booking/all', [BookingController::class, 'getAllBooking'])->name('getAllBooking');
     Route::post('/booking/add', [BookingController::class, 'addBooking'])->name('addBooking');
     Route::put('/booking/edit', [BookingController::class, 'editBooking'])->name('editBooking');
     Route::delete('/booking/delete', [BookingController::class, 'deletebooking'])->name('deletebooking');
 
-    Route::get('/booking/detail/menu/{bookingId}', [CheckoutController::class, 'getAllMenuByBookingId'])->name('etAllMenuByBookingId');
-    Route::post('/booking/detail/menu/add', [CheckoutController::class, 'addMenuByBookingId'])->name('ddMenuByBookingId');
+    Route::get('/booking/detail/menu/{bookingId}', [CheckoutController::class, 'getAllMenuByBookingId'])->name('getAllMenuByBookingId');
+    Route::post('/booking/detail/menu/add', [CheckoutController::class, 'addMenuByBookingId'])->name('addMenuByBookingId');
+    Route::put('/booking/detail/menu/edit', [CheckoutController::class, 'editMenuByBookingId'])->name('editMenuByBookingId');
     Route::delete('/booking/detail/menu/delete', [CheckoutController::class, 'deleteMenuByBookingId'])->name('deleteMenuByBookingId');
+
+    Route::get('/invoice/menu/ByBooking', [InvoiceController::class, 'getAllInvoiceMenuByBookingId'])->name('getAllInvoiceMenuByBookingId');
+    Route::get('/invoice/all/byUser', [InvoiceController::class, 'getAllInvoiceByUserId'])->name('getAllInvoiceByUserId');
+    Route::post('/invoice/add', [InvoiceController::class, 'addInvoice'])->name('addInvoice');
+    Route::delete('/invoice/delete', [InvoiceController::class, 'deleteInvoice'])->name('deleteInvoice');                                   
 });
 
 Route::group(['prefix' => 'menu'], function() {

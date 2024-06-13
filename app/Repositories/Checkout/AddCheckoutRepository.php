@@ -11,19 +11,19 @@ use Exception;
 
 class AddCheckoutRepository
 {
-    public function addCheckout($idBooking, $idMenu, $quantity)
+    public function addCheckout(CheckoutDTO $checkoutDTO)
     {
         try {
-            $booking = Booking::find($idBooking);
-            $menu = Menu::find($idMenu);
+            $booking = Booking::find($checkoutDTO->getIdBooking());
+            $menu = Menu::find($checkoutDTO->getIdMenu());
 
             if (!$menu || !$booking) {
                 throw new Exception('Booking or Menu not found');
             }
 
             // Cek apakah relasi menu dan booking sudah ada
-            $existingRelation = Checkout::where('idBooking', $idBooking)
-                ->where('idMenu', $idMenu)
+            $existingRelation = Checkout::where('idBooking', $checkoutDTO->getIdBooking())
+                ->where('idMenu', $checkoutDTO->getIdMenu())
                 ->first();
 
             if ($existingRelation) {
@@ -32,18 +32,12 @@ class AddCheckoutRepository
 
             // Tambahkan relasi menu dan booking ke tabel checkout
             $checkout = new Checkout();
-            $checkout->idBooking = $idBooking;
-            $checkout->idMenu = $idMenu;
-            $checkout->quantity = $quantity;
+            $checkout->idBooking = $checkoutDTO->getIdBooking();
+            $checkout->idMenu = $checkoutDTO->getIdMenu();
+            $checkout->quantity = $checkoutDTO->getQuantity();
             $checkout->save();
 
-            $check = new CheckoutDTO(
-                idBooking : $booking->id,
-                idMenu : $menu->id,
-                quantity : $quantity
-            );
-
-            return $check;
+            return $checkoutDTO;
         } catch (Exception $error) {
             throw new Exception($error->getMessage());
         }

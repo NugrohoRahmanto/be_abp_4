@@ -11,9 +11,8 @@ class GetAllBookingRepository
     public function getAllBooking()
     {
         try{
-            $bookings = Booking::join('shops', 'bookings.shop_id', '=', 'shops.id')
-                ->select('bookings.*', 'shops.namaToko', 'shops.lokasiToko')
-                ->orderBy('shops.namaToko', 'asc')
+            $bookings = Booking::join('users', 'bookings.user_id', '=', 'users.id')
+                ->select('bookings.*', 'users.fullName', 'users.nickname', 'users.phoneNumber')
                 ->get();
 
             $bookingDTOs = [];
@@ -21,14 +20,15 @@ class GetAllBookingRepository
             foreach ($bookings as $booking) {
                 $bookingDTO = [
                     'id' => $booking->id,
-                    'namaPemesan' => $booking->namaPemesan,
                     'nomorMeja' => $booking->nomorMeja,
-                    'telpPemesan' => $booking->telpPemesan,
                     'jamAmbil' => $booking->jamAmbil,
+                    'totalHarga' => $booking->totalHarga,
                     'statusAmbil' => $booking->statusAmbil,
-                    'shop_id' => $booking->shop_id,
-                    'shop_namaToko' => $booking->namaToko,
-                    'shop_lokasiToko' => $booking->lokasiToko
+                    'statusSelesai' => $booking->statusSelesai,
+                    'user_id' => $booking->user_id,
+                    'user_fullName' => $booking->fullName,
+                    'user_nickname' => $booking->nickname,
+                    'user_phoneNumber' => $booking->phoneNumber,
                 ];
 
                 array_push($bookingDTOs, $bookingDTO);

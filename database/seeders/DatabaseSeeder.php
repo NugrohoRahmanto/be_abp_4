@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             DiscountSeeder::class,
             MenuSeeder::class,
             BookingSeeder::class,
+            CheckoutSeeder::class,
+            InvoiceSeeder::class,
         ]);
     }
 }

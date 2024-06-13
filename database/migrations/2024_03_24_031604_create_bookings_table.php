@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->string('namaPemesan');
-            $table->integer('nomorMeja');
-            $table->string('telpPemesan');
+            $table->integer('nomorMeja')->nullable();
             $table->time('jamAmbil')->nullable();
             $table->integer('totalHarga')->default(0);
-            $table->string('statusAmbil')->default('Take Away');
+            $table->string('statusAmbil')->nullable();
+            $table->string('statusSelesai')->default('Belum');
 
-            $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -11,12 +11,10 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 use App\Repositories\Auth\ValidateRepository;
-use App\Services\Auth\GetUserInfoService;
 
 class LoginService {
     public function __construct(
-        private ValidateRepository $validateRepository,
-        private GetUserInfoService $getUserInfoService
+        private ValidateRepository $validateRepository
     ) {}
 
     /**
@@ -63,7 +61,7 @@ class LoginService {
                             'status' => 'offline'
                         ]);
                     } else {
-                        throw new \Exception("User information not found or invalid.");
+                        throw new \Exception("Your session has ended! Please login again.");
                     }
                     
                     return [
